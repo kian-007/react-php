@@ -1,0 +1,31 @@
+.slideshow div {
+    margin: 2px auto;
+    width: 90%;
+}
+
+.slideshow h2 {
+    margin-bottom: 0;
+}
+
+.slideshow div img {
+    width: 80%;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 450px) {
+    .slideshow div {
+        width: 100%;
+    }
+    .slideshow div img {
+        width: 100%;
+    }
+}
+
+.slideshow {
+    opacity: 0;
+    transition: 1s;
+}
+
+.slideshow.active {
+    opacity: 1;
+}

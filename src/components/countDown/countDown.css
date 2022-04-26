@@ -1,0 +1,43 @@
+.countDown {
+    width: 300px;
+    animation: an1 1.5s;
+}
+
+.countDown .first {
+    float: left;
+    margin: 15px 5px;
+    font-size: 20px;
+    /* border: 2px solid purple; */
+    background-image: conic-gradient(yellow, orange, #f70, #f50);
+    border-radius: 5px;
+    filter: drop-shadow(4px 4px 3px gray);
+}
+
+.countDown span {
+    font-weight: bolder;
+    font-size: 50px;
+    color: #fff;
+    margin: 0 2px;
+    padding-right: 2px;
+    text-shadow: 3px 3px 5px black;
+}
+
+.countDown span:nth-child(1) {
+    border-right: 2px solid purple;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.first div {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes an1 {
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}

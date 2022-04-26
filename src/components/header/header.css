@@ -1,0 +1,107 @@
+.header {
+    opacity: 0;
+    transition: all 1.3s;
+    margin: -13px auto;
+    width: 100%;
+    border-top: 2px solid #aaa;
+    /* border-bottom: 1px solid #ccc; */
+    background-color: #fff;
+    /* padding-bottom: 15px; */
+    padding: 10px;
+    /* overflow: hidden; */
+    min-height: 400px;
+    /* background: url('/public/girls.jpg'); */
+    box-shadow: 5px 5px 20px -5px #777;
+}
+
+.header h3 {
+    position: absolute;
+    color: #555;
+    margin: 0;
+}
+
+
+/* .cart img {
+    width: 25px;
+    margin: -3px 0;
+} */
+
+.navbar {
+    display: inline-block;
+}
+
+.offcanvas {
+    display: none;
+}
+
+@media only screen and (max-width: 630px) {
+    .navbar {
+        display: none;
+    }
+    .offcanvas {
+        display: inline-block;
+    }
+    .offcanvas {
+        display: flex;
+        justify-content: center;
+        margin-top: 45px;
+    }
+    .offcanvasButtonDiv {
+        float: right;
+    }
+    .header #menuButton {
+        float: right;
+        margin: 7px;
+    }
+    .header {
+        opacity: 0;
+        width: 100%;
+        margin-top: -6%;
+        padding-right: 2px;
+        padding-left: 2px;
+        box-shadow: 0px 2px 5px #aaa;
+        /* background: url('/public/beautifulwo3.jpeg');
+        background-repeat: no-repeat;
+        */
+        max-height: 400px;
+    }
+    .header h3 {
+        top: 100px;
+        right: 20px;
+        color: #ddd;
+    }
+    .header .cart {
+        position: relative;
+        margin: 15px 0;
+    }
+}
+
+@media only screen and (min-width: 630px) {
+    .header {
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        /* background: url('/public/beautifulwo.png');
+        background-repeat: no-repeat;
+        background-size: 103% 780px; */
+        min-height: 600px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .header {
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        /* background: url('/public/beautifulwo.png');
+        background-repeat: no-repeat;
+        background-size: 103% 780px; */
+        min-height: 750px;
+    }
+}
+
+.header.onLoad {
+    opacity: 1;
+}

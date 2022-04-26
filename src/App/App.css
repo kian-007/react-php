@@ -1,0 +1,15 @@
+.App {
+    text-align: left;
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+    min-height: 400px;
+}
+
+.heading1 {
+    font-size: 22px !important;
+}
+
+p {
+    font-size: 13px !important;
+}

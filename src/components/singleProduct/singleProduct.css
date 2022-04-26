@@ -1,0 +1,50 @@
+.singleProduct {
+    margin: 15px 5%;
+    opacity: 0;
+    transition: opacity 1.5s;
+    width: 90%;
+    box-shadow: 7px 3px 25px rgba(100, 100, 100, 0.9), inset -10px -13px 25px rgba(150, 150, 150, 0.7);
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.singleProduct.onLoad {
+    opacity: 1;
+}
+
+.info {
+    margin: 100px 15px;
+    display: flex;
+    flex-direction: column;
+    float: left;
+}
+
+.info div {
+    display: flex;
+    flex-direction: row;
+}
+
+.info h3 {
+    margin: 0;
+    display: inline;
+}
+
+.info span {
+    margin: 0 5px;
+}
+
+#singleImg {
+    margin-top: 10px;
+    width: 500px;
+}
+
+@media only screen and (max-width: 630px) {
+    #singleImg {
+        margin: 10px 10%;
+        width: 80%;
+    }
+    .singleProduct {
+        flex-direction: column;
+    }
+}

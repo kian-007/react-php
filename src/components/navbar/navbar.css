@@ -1,0 +1,157 @@
+.navbar {
+    background-color: rgb(255, 204, 204);
+    margin: 30px 30%;
+    position: absolute;
+}
+
+#nav {
+    transition: all .7s;
+}
+
+#navbarcontent {
+    display: flex;
+}
+
+#navbarcontent li a button {
+    color: var(--black);
+}
+
+#navbarcontent li.MainNavActive a button {
+    color: #111;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: inline;
+    width: 70%;
+    padding-inline-start: 20px;
+}
+
+.navbar>ul {
+    align-items: center;
+}
+
+.navbar ul li {
+    display: inline;
+    padding-left: 0px;
+}
+
+.navbar ul button {
+    padding: 13px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.navbar ul button:hover {
+    border-bottom: 1px solid #555;
+    background-color: #ddd;
+    color: #444;
+}
+
+.navbar .subNavHolder {
+    height: 70px;
+    visibility: hidden;
+}
+
+.navbar .subNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    overflow: hidden;
+    font-size: 13px;
+    margin: 0;
+    padding: 13px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* box-shadow: 3px 3px 5px #bbb; */
+}
+
+.navbar .subNav li {
+    padding: 7px 5px;
+}
+
+.navbar .subNav button {
+    font-weight: bold;
+    transition: color .3s;
+}
+
+.navbar .subNav a {
+    text-decoration: none;
+    color: #555;
+    transition: color .3s;
+}
+
+.navbar .subNav li a:hover {
+    color: purple;
+    font-weight: bolder;
+    box-shadow: 3px 10px 10px -7px purple;
+}
+
+.navbar .subNav li.SubNavActive a {
+    color: #111;
+    font-weight: bold;
+    border-left: 3px solid purple;
+}
+
+@media only screen and (max-width: 450px) {
+    .navbar ul li {
+        margin-left: -20px;
+        padding: -15px;
+    }
+    .navbar ul button {
+        font-size: 10px;
+    }
+}
+
+#shoplist {
+    display: none;
+    background-color: #fff;
+    position: absolute;
+    width: auto;
+    /* overflow: hidden; */
+    max-height: 285px;
+    box-shadow: 3px 3px 7px -1px #aaa;
+}
+
+.cart {
+    float: right;
+    width: 50px;
+    margin: 10px 13px;
+}
+
+.cart h4 {
+    display: inline;
+    margin-right: 1px;
+}
+
+#cartselct {
+    color: black;
+}
+
+#cartselct:hover {
+    color: white;
+}
+
+#cartselct:active {
+    color: rgb(255, 66, 66);
+}
+
+#shopbtn--icon {
+    display: flex;
+}
+
+.nonono {
+    text-decoration: none;
+}
+
+
+/* @keyframes aa {
+    0% {}
+    100% {
+        transform: rotate(180deg);
+    }
+} */

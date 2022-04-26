@@ -1,0 +1,381 @@
+[{
+    "fantasy": {
+        "mirror": {
+            "name": "mirror",
+            "price": 17,
+            "items": [{
+                    "id": "b9ce003b-c9e3-433b-b715-78f35f379ce7",
+                    "image": "mir14.jpg"
+                },
+                {
+                    "id": "b9ce003b-n0e3-433b-b715-78f35f379ce7",
+                    "image": "mirror1.jpg"
+                },
+                {
+                    "id": "b0a53557-844c-4132-baf6-bd5ede666865",
+                    "image": "mir2.jpg"
+                },
+                {
+                    "id": "cb08e432-242f-4140-b3f3-b7d51e1f7540",
+                    "image": "mir1.jpg"
+                },
+                {
+                    "id": "502431b3-05c6-40ab-a619-0fc7fda3d66b",
+                    "image": "mir4.jpg"
+                },
+                {
+                    "id": "7c0d3578-e240-4c6a-b7ee-ac7c63430379",
+                    "image": "mir5.jpg"
+                },
+                {
+                    "id": "6cd10f25-5c21-4f97-9885-00cd5b05b47d",
+                    "image": "mir6.jpg"
+                },
+                {
+                    "id": "b3c82270-98b4-4776-89ba-g384hknd9kl2",
+                    "image": "mir7.jpg"
+                },
+                {
+                    "id": "b3c82270-98b4-4776-89ba-fa23n4gjs71a",
+                    "image": "mir8.jpg"
+                },
+                {
+                    "id": "b3c82270-98b4-4776-89ba-vkne3brdg71a",
+                    "image": "mir9.jpg"
+                },
+                {
+                    "id": "b3c82270-98b4-4776-89ba-facpfd9b371a",
+                    "image": "mir10.jpg"
+                },
+                {
+                    "id": "b3c82270-98b4-4776-89ba-fsdfkr2b371a",
+                    "image": "mir11.jpg"
+                },
+                {
+                    "id": "b3c82270-98b4-4776-89ba-famcvprb371a",
+                    "image": "mir12.jpg"
+                },
+                {
+                    "id": "b3c82270-98b4-4776-89ba-jd84j63b371a",
+                    "image": "mir13.jpg"
+                }
+            ]
+        }
+    },
+    "skin": {
+        "handcream": {
+            "name": "handcream",
+            "price": 20,
+            "items": [{
+                    "id": "b9ce0749-c9e3-433b-b715-78f35f379ce7",
+                    "image": "ax1.jpg"
+                }, {
+                    "id": "b9ce0249-c9e3-433b-b715-78f35f379ce7",
+                    "image": "mrtb99.jpg"
+                },
+                {
+                    "id": "b9ce0991-c9e3-433b-b715-78f35f379ce7",
+                    "image": "mrtb44.jpg"
+                },
+                {
+                    "id": "b0a53999-844c-4132-baf6-bd5ede666865",
+                    "image": "mrtb55.jpg"
+                },
+                {
+                    "id": "cb08e477-242f-4140-b3f3-b7d51e1f7540",
+                    "image": "mrtb66.jpg"
+                },
+                {
+                    "id": "cb08e185-242f-4140-b3f3-b7d51e1f7540",
+                    "image": "mrtb77.jpg"
+                },
+                {
+                    "id": "cb08e360-242f-4140-b3f3-b7d51e1f7540",
+                    "image": "mrtb88.jpg"
+                }
+            ]
+        },
+        "facebrush": {
+            "name": "facebrush",
+            "price": 48,
+            "items": [{
+                    "id": "cb08e185-242f-4140-93g7-b7d51e1f7540",
+                    "image": "facebrush1.jpg"
+                },
+                {
+                    "id": "cb08e360-242f-4140-84bf-b7d51e1f7540",
+                    "image": "brush4.jpg"
+                },
+                {
+                    "id": "b9ce0957-c9e3-433b-jj44-78f35f379ce7",
+                    "image": "brush2.jpg"
+                },
+                {
+                    "id": "b0a53999-844c-4132-02bf-bd5ede666865",
+                    "image": "brush3.jpg"
+                },
+                {
+                    "id": "cb08e477-242f-4140-ed9b-b7d51e1f7540",
+                    "image": "brush5.jpg"
+                },
+                {
+                    "id": "cb08ej185-242f-4140-93g7-b7d51e1f7540",
+                    "image": "brush6.jpg"
+                },
+                {
+                    "id": "cb08e360-242f-4140-84bf-b9v41e1f7540",
+                    "image": "brush7.jpg"
+                }
+            ]
+        }
+    },
+    "beauty": {
+        "bag": {
+            "name": "bag",
+            "price": 40,
+            "items": [{
+                    "id": "b9ce0957-c9e3-j1xn-b715-78f35f379ce7",
+                    "image": "bags1.jpg"
+                },
+                {
+                    "id": "b0a53999-844c-493f-baf6-bd5ede666865",
+                    "image": "bags2.jpg"
+                },
+                {
+                    "id": "cb08e477-242f-03jv-b3f3-b7d51e1f7540",
+                    "image": "abag1.jpg"
+                },
+                {
+                    "id": "cb08e185-242f-94jj-b3f3-b7d51e1f7540",
+                    "image": "abag2.jpg"
+                },
+                {
+                    "id": "cb08e360-242f-j29s-b3f3-b7d51e1f7540",
+                    "image": "abag3.jpg"
+                }
+            ]
+        },
+        "rimmel": {
+            "name": "rimmel",
+            "price": 60,
+            "items": [{
+                    "id": "b9ce0957-c9e3-j1xn-b715-78f35f3jd82b",
+                    "image": "rimmel7.jpg"
+                },
+                {
+                    "id": "b0a53999-844c-493f-baf6-bd5ede6arq98",
+                    "image": "rimmel5.jpg"
+                },
+                {
+                    "id": "cb08e477-242f-03jv-b3f3-b7d51e1bbcl3",
+                    "image": "rimmel4.jpg"
+                },
+                {
+                    "id": "cb08e185-242f-94jj-b3f3-b7d51e1ppp3d",
+                    "image": "rimmel1.jpg"
+                },
+                {
+                    "id": "cb08e360-242f-j29s-b3f3-b7d51e1bx01t",
+                    "image": "rimmel2.jpg"
+                },
+                {
+                    "id": "cb08e360-242f-j29s-b3f3-b7d51e100xhw",
+                    "image": "rimmel3.jpg"
+                },
+                {
+                    "id": "cb08e360-242f-j29s-b3f3-b7d51e1bx012",
+                    "image": "rimmel6.jpg"
+                },
+                {
+                    "id": "cb08e360-242f-j29s-b3f3-b7d51e100xh0",
+                    "image": "rimmel8.jpg"
+                }
+            ]
+        },
+        "lamplipgloss": {
+            "name": "lamplipgloss",
+            "price": 23,
+            "items": [{
+                    "id": "q2e8e360-242f-j29s-b3f3-b7d51e100xhw",
+                    "image": "lamp6.jpg"
+                },
+                {
+                    "id": "d6he0957-c9e3-j1xn-b715-78f35f3jd82b",
+                    "image": "lamp1.jpg"
+                },
+                {
+                    "id": "d9m53999-844c-493f-baf6-bd5ede6arq98",
+                    "image": "lamp2.jpg"
+                },
+                {
+                    "id": "m2z8e477-242f-03jv-b3f3-b7d51e1bbcl3",
+                    "image": "lamp3.jpg"
+                },
+                {
+                    "id": "t9t8e185-242f-94jj-b3f3-b7d51e1ppp3d",
+                    "image": "lamp4.jpg"
+                },
+                {
+                    "id": "l9l8e360-242f-j29s-b3f3-b7d51e1bx012",
+                    "image": "lamp5.jpg"
+                }
+            ]
+        },
+        "capsullipgloss": {
+            "name": "capsullipgloss",
+            "price": 20,
+            "items": [{
+                    "id": "l9l8e360-242f-j29s-b3f3-b7d51e1jd93h",
+                    "image": "capsul7.jpg"
+                }, {
+                    "id": "q2e8e360-242f-j29s-b3f3-b7d51e1kkdn3",
+                    "image": "capsul1.jpg"
+                },
+                {
+                    "id": "d6he0957-c9e3-j1xn-b715-78f35f3md9n4",
+                    "image": "capsul2.jpg"
+                },
+                {
+                    "id": "d9m53999-844c-493f-baf6-bd5ede639g44",
+                    "image": "capsul3.jpg"
+                },
+                {
+                    "id": "m2z8e477-242f-03jv-b3f3-b7d51e1dj64x",
+                    "image": "capsul4.jpg"
+                },
+                {
+                    "id": "t9t8e185-242f-94jj-b3f3-b7d51e1jd55n",
+                    "image": "capsul5.jpg"
+                },
+                {
+                    "id": "l9l8e360-242f-j729s-b3f3-b7d51e1dj49v",
+                    "image": "capsul6.jpg"
+                }
+            ]
+        },
+        "fruitlipbalm": {
+            "name": "fruitlipbalm",
+            "price": 27,
+            "items": [{
+                    "id": "b9t8e185-242f-94jj-b3f3-b7d51e1jkd93n",
+                    "image": "balmbastani1.jpg"
+                },
+                {
+                    "id": "l9l8e360-241f-j29s-b3f4-b7d51e1d5j23v",
+                    "image": "balmbastani2.jpg"
+                },
+                {
+                    "id": "t9t8e185-242f-94jj-b3f3-b7d514e1jd93n",
+                    "image": "balmbastani3.jpg"
+                },
+                {
+                    "id": "l9l8e360-242f-j29s-b3f3-b7d51de1dj26v",
+                    "image": "balmbastani4.jpg"
+                },
+                {
+                    "id": "m2z8e477-242f-03jv-b3f3-b7d51ge1dj39x",
+                    "image": "balmbastani7.jpg"
+                },
+                {
+                    "id": "m2z8e477-242f-03jv-b3f3-b7d51se1dj78x",
+                    "image": "balmbastani8.jpg"
+                },
+                {
+                    "id": "m2z8e477-242f-03jv-b3f3-b7d5e1e1dj11x",
+                    "image": "balmbastani9.jpg"
+                },
+                {
+                    "id": "m2z8e477-242f-03jv-b3f3-b7d51e1dj49xs",
+                    "image": "balmbastani10.jpg"
+                }
+            ]
+        },
+        "fantasybrush": {
+            "name": "fantasybrush",
+            "price": 60,
+            "items": [{
+                    "id": "sdft9t8e185-242f-94jj-b3f3-b7d51e1jd93nmm",
+                    "image": "newbrush.jpg"
+                },
+                {
+                    "id": "fghl9l8e360-242f-j29s-b3f3-b7d51e1dj49vll",
+                    "image": "newbrush2.jpg"
+                },
+                {
+                    "id": "rtyt9t8e185-242f-94jj-b3f3-b7d51e1jd93n55",
+                    "image": "cbrush5.jpg"
+                },
+                {
+                    "id": "yuil9l8e360-242f-j29s-b3f3-b7d51e1dj49vjj",
+                    "image": "bbrushes.jpg"
+                },
+                {
+                    "id": "cvbm2z8e477-242f-03jv-b3f3-b7d51e1dj39xee",
+                    "image": "nbrush5.jpg"
+                },
+                {
+                    "id": "asdm2z8e477-242f-03jv-b3f3-b7d51e1dj39xdd",
+                    "image": "abrush5.jpg"
+                }
+            ]
+        },
+        "bhcosmeticbrush": {
+            "name": "bhcosmeticbrush",
+            "price": 250,
+            "items": [{
+                    "id": "sdft9t8e1ff85-242f-94jj-b3f3-b7d51e1jd93nmm",
+                    "image": "cobrush1.jpg"
+                },
+                {
+                    "id": "fghl9l448e360-242f-j29s-b3f3-b7d51e1dj49vll",
+                    "image": "cobrush5.jpg"
+                },
+                {
+                    "id": "rtyt9t8e1hh85-242f-94jj-b3f3-b7d51e1jd93n55",
+                    "image": "cobrush2.jpg"
+                },
+                {
+                    "id": "yuil9xxl8e360-242f-j29s-b3f3-b7d51e1dj49vjj",
+                    "image": "brushbh1.jpg"
+                },
+                {
+                    "id": "cvbm2z8aae477-242f-03jv-b3f3-b7d51e1dj39xee",
+                    "image": "cobrush3.jpg"
+                },
+                {
+                    "id": "asdm2zoo8e477-242f-03jv-b3f3-b7d51e1dj39xdd",
+                    "image": "cobrush4.jpg"
+                }
+            ]
+        },
+        "maskbrush": {
+            "name": "maskbrush",
+            "price": 25,
+            "items": [{
+                    "id": "sdft9d8t8e1ff85-242f-94jj-b3f3-b7d51e1jd93nmm",
+                    "image": "brushm3.jpg"
+                },
+                {
+                    "id": "fghl9l448b6e360-242f-j29s-b3f3-b7d51e1dj49vll",
+                    "image": "brushm6.jpg"
+                },
+                {
+                    "id": "rtyt9s9t8e1hh85-242f-94jj-b3f3-b7d51e1jd93n55",
+                    "image": "brushm7.jpg"
+                },
+                {
+                    "id": "yuil9xxl8e3a460-242f-j29s-b3f3-b7d51e1dj49vjj",
+                    "image": "brushm1.jpg"
+                },
+                {
+                    "id": "cvbm2b3z8aae477-242f-03jv-b3f3-b7d51e1dj39xee",
+                    "image": "brushm4.jpg"
+                },
+                {
+                    "id": "asdm2zoop58e477-242f-03jv-b3f3-b7d51e1dj39xdd",
+                    "image": "brushm5.jpg"
+                }
+            ]
+        }
+    }
+}]

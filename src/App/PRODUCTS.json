@@ -1,0 +1,111 @@
+[{
+    "fantasy": {
+        "mirror": {
+            "name": "mirror",
+            "price": 17,
+            "items": [{
+                "id": "b3c82270-98b4-4776-89ba-vkne3brdg71a",
+                "image": "mir9.jpg"
+            }]
+        }
+    },
+    "skin": {
+        "handcream": {
+            "name": "handcream",
+            "price": 20,
+            "items": [{
+                "id": "b9ce0749-c9e3-433b-b715-78f35f379ce7",
+                "image": "ax1.jpg"
+            }]
+        },
+        "facebrush": {
+            "name": "facebrush",
+            "price": 48,
+            "items": [{
+                "id": "cb08e477-242f-4140-ed9b-b7d51e1f7540",
+                "image": "brush5.jpg"
+            }]
+        }
+    },
+    "beauty": {
+        "bag": {
+            "name": "bag",
+            "price": 40,
+            "items": [{
+                "id": "b0a53999-844c-493f-baf6-bd5ede666865",
+                "image": "bags2.jpg"
+            }]
+        },
+        "rimmel": {
+            "name": "rimmel",
+            "price": 60,
+            "items": [{
+                "id": "cb08e360-242f-j29s-b3f3-b7d51e100xh0",
+                "image": "rimmel8.jpg"
+            }]
+        },
+        "lamplipgloss": {
+            "name": "lamplipgloss",
+            "price": 23,
+            "items": [{
+                "id": "q2e8e360-242f-j29s-b3f3-b7d51e100xhw",
+                "image": "lamp6.jpg"
+            }]
+        },
+        "capsullipgloss": {
+            "name": "capsullipgloss",
+            "price": 20,
+            "items": [{
+                "id": "l9l8e360-242f-j29s-b3f3-b7d51e1jd93h",
+                "image": "capsul7.jpg"
+            }]
+        },
+        "fruitlipbalm": {
+            "name": "fruitlipbalm",
+            "price": 27,
+            "items": [{
+                    "id": "b9t8e185-242f-94jj-b3f3-b7d51e1jkd93n",
+                    "image": "balmbastani1.jpg"
+                },
+                {
+                    "id": "t9t8e185-242f-94jj-b3f3-b7d514e1jd93n",
+                    "image": "balmbastani3.jpg"
+                }
+            ]
+        },
+        "fantasybrush": {
+            "name": "fantasybrush",
+            "price": 60,
+            "items": [{
+                    "id": "sdft9t8e185-242f-94jj-b3f3-b7d51e1jd93nmm",
+                    "image": "newbrush.jpg"
+                },
+                {
+                    "id": "fghl9l8e360-242f-j29s-b3f3-b7d51e1dj49vll",
+                    "image": "newbrush2.jpg"
+                }
+            ]
+        },
+        "bhcosmeticbrush": {
+            "name": "bhcosmeticbrush",
+            "price": 250,
+            "items": [{
+                    "id": "fghl9l448e360-242f-j29s-b3f3-b7d51e1dj49vll",
+                    "image": "cobrush5.jpg"
+                },
+                {
+                    "id": "rtyt9t8e1hh85-242f-94jj-b3f3-b7d51e1jd93n55",
+                    "image": "cobrush2.jpg"
+                }
+            ]
+        },
+        "maskbrush": {
+            "name": "maskbrush",
+            "price": 25,
+            "items": [{
+                "id": "rtyt9s9t8e1hh85-242f-94jj-b3f3-b7d51e1jd93n55",
+                "image": "brushm7.jpg"
+            }]
+        }
+    }
+}]

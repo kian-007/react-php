@@ -1,0 +1,74 @@
+.lampLipGlosses {
+    margin: 45px 5%;
+}
+
+.lampLipGlosses {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.lampLipGlosses li {
+    margin: 10px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: box-shadow 0.3s, opacity 1.5s 0s, border-color .5s;
+    border-radius: 7px;
+    border: 1px solid #eee;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+.lampLipGlosses li a {
+    width: 100%;
+    flex-grow: 2;
+}
+
+.lampLipGlosses li a img {
+    width: 100%;
+}
+
+.lampLipGlosses li:hover {
+    color: #0077ff;
+    box-shadow: rgb(38, 57, 77) 0px 22px 22px 0px;
+}
+
+@media only screen and (max-width: 450px) {
+    .lampLipGlosses li {
+        width: 115px;
+    }
+    .placeholder {
+        display: none;
+    }
+    .lampLipGlosses li a {
+        width: 100%;
+    }
+    .lampLipGlosses li a img {
+        width: 100%;
+    }
+}
+
+.placeholder {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 450px) {
+    .placeholder {
+        display: none;
+    }
+}
+
+
+/* .mirrorItems {
+    opacity: 0;
+}
+
+.mirrorItems.visible {
+    opacity: 1;
+} */

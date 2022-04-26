@@ -1,0 +1,72 @@
+.bhCosmeticBrushes {
+    margin: 45px 5%;
+}
+
+.bhCosmeticBrushes {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bhCosmeticBrushes li {
+    margin: 10px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: box-shadow 0.3s, opacity 1.5s 0s, border-color .5s;
+    border-radius: 7px;
+    border: 1px solid #eee;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+.bhCosmeticBrushes li a {
+    width: 100%;
+    flex-grow: 2;
+}
+
+.bhCosmeticBrushes li a img {
+    width: 100%;
+    filter: saturate(150%);
+    -webkit-filter: saturate(150%);
+}
+
+.bhCosmeticBrushes li:hover {
+    color: #0077ff;
+    box-shadow: rgb(38, 57, 77) 0px 22px 22px 0px;
+}
+
+@media only screen and (max-width: 450px) {
+    .bhCosmeticBrushes li {
+        width: 115px;
+    }
+    .placeholder {
+        display: none;
+    }
+    .bhCosmeticBrushes li a {
+        width: 100%;
+    }
+    .bhCosmeticBrushes li a img {
+        width: 100%;
+        filter: saturate(150%);
+        -webkit-filter: saturate(150%);
+    }
+}
+
+.placeholder {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+/* .mirrorItems {
+    opacity: 0;
+}
+
+.mirrorItems.visible {
+    opacity: 1;
+} */

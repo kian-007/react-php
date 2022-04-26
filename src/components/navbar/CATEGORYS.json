@@ -1,0 +1,17 @@
+[{
+        "title": "fantasy",
+        "section": ["Mirror"]
+    },
+    {
+        "title": "skin",
+        "section": ["HandCream", "FaceBrush"]
+    },
+    {
+        "title": "beauty",
+        "section": ["Bag", "Rimmel", "Lamp_LipGloss", "Capsul_LipGloss", "Fruit_LipBalm", "Fantasy_Brush", "BhCosmetic_Brush", "Mask_Brush"]
+    },
+    {
+        "title": "hair",
+        "section": []
+    }
+]

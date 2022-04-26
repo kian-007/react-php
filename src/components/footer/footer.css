@@ -1,0 +1,54 @@
+.footer {
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    background-color: #ccc;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 0;
+    clear: both;
+    height: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer span {
+    margin-left: 20px;
+    flex-grow: 1;
+}
+
+.footer .white {
+    background-color: rgb(255, 255, 255);
+}
+
+.footer .red {
+    background-color: rgb(240, 50, 100);
+}
+
+.footer button {
+    float: right;
+    margin-right: 20px;
+    border-radius: 2px;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    height: 80%;
+}
+
+.footer .theme {
+    display: flex;
+    direction: row;
+}
+
+.footer button:hover {
+    opacity: .8;
+}
+
+.footer .socialMedia a {
+    color: var(--black);
+}
+
+.footer .socialMedia a:hover {
+    color: #111111;
+}

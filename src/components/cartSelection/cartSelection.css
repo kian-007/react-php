@@ -1,0 +1,89 @@
+.cartselection {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cartselection li {
+    margin: 10px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: box-shadow 0.3s, opacity 1.5s 0s;
+    border-radius: 7px;
+    border: 1px solid #eee;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 50px;
+}
+
+.cartselection li a {
+    width: 180px;
+}
+
+.cartselection li a img {
+    width: 100%;
+}
+
+
+/* .cartselection li:hover {
+    color: #0077ff;
+    box-shadow: rgb(38, 57, 77) 0px 22px 22px 0px;
+} */
+
+@media only screen and (max-width: 630px) {
+    .cartselection li {
+        width: 30%;
+    }
+    .cartselection li a {
+        width: 100%;
+    }
+    .cartselection li a img {
+        width: 100%;
+    }
+}
+
+.placeholder {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 450px) {
+    .placeholder {
+        display: none;
+    }
+}
+
+.cartselection h4 {
+    display: inline;
+}
+
+.RemoveShoppingCartButton {
+    float: right;
+    border: none;
+    offset: none;
+    background-color: #fff;
+    margin: -5px -7px;
+}
+
+.RemoveShoppingCartButton:hover {
+    color: red;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 400px) {
+    .RemoveShoppingCartButton {
+        float: right;
+        padding: 0;
+        border: none;
+        offset: none;
+        background-color: #fff;
+        margin: -5px -7px;
+    }
+    .RemoveShoppingCart {
+        width: 17px;
+    }
+}
