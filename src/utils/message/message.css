@@ -1,0 +1,75 @@
+.Message {
+    width: 70%;
+    height: 100px;
+    display: none;
+    margin: 30px;
+    border-radius: 15px;
+    animation: aaerror 2s;
+    animation-iteration-count: infinite;
+    transition: all .5s;
+}
+
+.Message.success {
+    background-color: var(--secondary);
+}
+
+.Message.error {
+    background-color: #ffc0cb;
+}
+
+.Message.information {
+    background-color: var(--primary);
+}
+
+.Message div {
+    margin: auto;
+    height: 80%;
+    width: 80%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* background-color: orange; */
+    /* overflow: visible; */
+}
+
+.Message span {
+    display: flex;
+    /* background-color: white; */
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+
+/* @keyframes aaerror {
+    0% {
+        width: 0px;
+        height: 0px;
+    }
+    100% {
+        width: 70%;
+        height: 100px;
+    }
+} */
+
+
+/* @keyframes aaerror {
+    0% {
+        background-color: var(--secondary);
+    }
+    100% {
+        background-color: orange;
+    }
+} */
+
+@media only screen and (max-width: 450px) {
+    .Message {
+        width: 95%;
+    }
+    .Message span {
+        font-size: 15px;
+    }
+}

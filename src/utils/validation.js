@@ -9,8 +9,14 @@ const ValidateEmail = (email) => {
 
 const ValidateSubject = (subject) => subject.length > 8;
 const ValidateUsername = (username) => username.length > 6 || username.length == 0;
+const ValidatePassword = (password) => {
+  // var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  // var regularExpression = /(?=.*([A-Z]+))(?=.*([0-9]+))(?=.*([!@#$%^&*.]+))/;
+  var regularExpression = /(?=.*([A-Z]+))(?=.*([0-9]+))/;
+  return regularExpression.test(password)
+};
 
 
-export { ValidateEmail, ValidateSubject, ValidateUsername };
+export { ValidateEmail, ValidateSubject, ValidateUsername, ValidatePassword };
 
 

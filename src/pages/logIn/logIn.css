@@ -99,3 +99,8 @@
         top: 0px;
     }
 }
+
+.activeButtonLogin button {
+    background-image: linear-gradient(to right, #77afff, purple);
+    transition: .5s;
+}
