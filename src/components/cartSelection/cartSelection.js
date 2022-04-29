@@ -6,11 +6,23 @@ import { Link } from 'react-router-dom';
 import { PROJECT_URL } from '../../config/general';
 import { Image } from '../';
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
+import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
 
 const CartSelection = () => {
     // const selections = useParams()
     const { carts, dispatchCart } = useContext(CartContext)
     const [newSelection, setNewSelection] = useState([])
+    const { checkAuthentication } = useContext(AuthContext)
+
+
+
+    useEffect(() => {
+        checkAuthentication(true)
+    }, [])
+
+
+
+
 
 
     let selection = []
@@ -33,7 +45,7 @@ const CartSelection = () => {
 
     useEffect(() => {
         setNewSelection(selection)
-    },[selection])
+    }, [selection])
 
     const handleRemoveShoppingCart = (itemid) => {
         dispatchCart({

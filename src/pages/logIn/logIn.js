@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { RestFulApi } from '../../apis/api';
 import { ButtonComponent } from '../../components';
+import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
 import Message from '../../utils/message/message';
 import { ValidateUsername, ValidatePassword } from '../../utils/validation';
 import './logIn.css';
@@ -13,7 +15,11 @@ const LogIn = () => {
     const [post, setPost] = useState([])
     const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(false)
+    const { login, currentUserId } = useContext(AuthContext)
     // window.location.replace("http://localhost:3000/");
+
+
+    // console.log("function existense", typeof authentication.is_user_logged_in)
 
     const handleUserInput = (event) => {
         if (event.target.value.length === 0) {
@@ -33,6 +39,7 @@ const LogIn = () => {
                 ...errors,
                 username: 'The Username must be more than 6 characters.'
             })
+            setUserInput("")
         }
     }
 
@@ -53,6 +60,7 @@ const LogIn = () => {
                 ...errors,
                 password: 'The Password is not valid!'
             })
+            setPassInput("")
         }
     }
 
@@ -64,7 +72,7 @@ const LogIn = () => {
                 ...errors,
                 username: "Username Validation Error!"
             })
-            return;
+            return false;
         } else {
             setErrors({
                 ...errors,
@@ -77,7 +85,7 @@ const LogIn = () => {
                 ...errors,
                 password: "Password Validation Error!"
             })
-            return;
+            return false;
         } else {
             setErrors({
                 ...errors,
@@ -92,32 +100,31 @@ const LogIn = () => {
 
 
     var a;
-    var k;
-    const requestApi = async () => {
-        process_inputs()
-        setLoading(true)
-        const responsePosts = await fetch(`https://apis.kikiq.ir/api.php?fn=hey&arg1=${newUserInput}`)
-        const posts = await responsePosts.json()
-        return posts;
-    }
-
+    var p;
     const handleSubmit = () => {
-        let finalResponse = requestApi()
+        p = process_inputs()
+        if(p == false){
+            return;
+        }
+        // console.log("process", process_inputs)
+        setLoading(true)
+        let finalResponse = RestFulApi(`http://localhost/apis/api.php?fn=user_exists&arg1=${userInput}`)
 
         finalResponse.then(function (value) {
-            console.log("sucsessfull respnse: ", JSON.stringify(value));
-            // console.log("type of value2: ", typeof (value));
             a = value
             setPost(a)
             setLoading(false);
             buttonSubmitRef.current.classList.add('activeButtonLogin')
+            login("09198361951")
+            console.log("userId", currentUserId)
         });
 
         finalResponse.catch(function (reason) {
-            console.log("rejected response ", reason);
             setLoading(false)
         });
     }
+
+
 
 
     useEffect(() => {
@@ -128,10 +135,12 @@ const LogIn = () => {
 
 
 
+
+
     return (
         <div className="LogIn" ref={inputsform}>
 
-            {post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)}
+            {post != null && post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)}
             <form onSubmit={(e) => { e.preventDefault() }} className="form" id="form1">
 
                 <div className="formInput username">
@@ -156,8 +165,12 @@ const LogIn = () => {
 
 
             <div>
+                {post == null && (
+                    <span>There is nothing to show!</span>
+                )}
+
                 {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (
-                    typeof (post) == "string" ? (
+                    post != null && typeof (post) == "string" || typeof (post) == "number" ? (
                         <span>{post}</span>
                     ) : (
                         <div>
@@ -168,6 +181,13 @@ const LogIn = () => {
                             ))}
                         </div>
                     )
+                )}
+
+                {typeof (post) == "boolean" && (
+                    <div>
+                        <span>{post == true && "This is a true response"}</span>
+                        <span>{post == false && "This is a false response"}</span>
+                    </div>
                 )}
 
                 {/* {post} */}
