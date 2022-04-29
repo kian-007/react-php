@@ -103,12 +103,11 @@ const LogIn = () => {
     var p;
     const handleSubmit = () => {
         p = process_inputs()
-        if(p == false){
+        if (p == false) {
             return;
         }
-        // console.log("process", process_inputs)
         setLoading(true)
-        let finalResponse = RestFulApi(`http://localhost/apis/api.php?fn=user_exists&arg1=${userInput}`)
+        let finalResponse = RestFulApi(`http://localhost/apis/api.php?fn=get_user2&arg1=${userInput}`)
 
         finalResponse.then(function (value) {
             a = value
@@ -122,6 +121,19 @@ const LogIn = () => {
         finalResponse.catch(function (reason) {
             setLoading(false)
         });
+    }
+
+    let postObjectLenght;
+    const checkType = () => {
+        if (typeof post == "object" && post != null) {
+            postObjectLenght = Object.keys(post).length
+            return postObjectLenght;
+        }
+    }
+
+    if (typeof post == "object") {
+        postObjectLenght = checkType();
+        console.log("object length: ", postObjectLenght)
     }
 
 
@@ -139,8 +151,13 @@ const LogIn = () => {
 
     return (
         <div className="LogIn" ref={inputsform}>
+            {typeof (post) != "object" ? (
+                post != null && post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
+            ) : (
+                post != null && postObjectLenght > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
+            )}
 
-            {post != null && post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)}
+
             <form onSubmit={(e) => { e.preventDefault() }} className="form" id="form1">
 
                 <div className="formInput username">
@@ -157,7 +174,7 @@ const LogIn = () => {
 
 
                 <div ref={buttonSubmitRef}>
-                    <ButtonComponent handleClick={() => { handleSubmit() }} btntype="submit" btnform="form1"  >
+                    <ButtonComponent handleClick={() => { handleSubmit(); checkType() }} btntype="submit" btnform="form1"  >
                         LogIn
                     </ButtonComponent>
                 </div>
@@ -172,7 +189,7 @@ const LogIn = () => {
                 {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (
                     post != null && typeof (post) == "string" || typeof (post) == "number" ? (
                         <span>{post}</span>
-                    ) : (
+                    ) : post != null &&  (
                         <div>
                             {Object.keys(post).map(item => (
                                 <div>
@@ -183,7 +200,7 @@ const LogIn = () => {
                     )
                 )}
 
-                {typeof (post) == "boolean" && (
+                {post != null && typeof (post) == "boolean" && (
                     <div>
                         <span>{post == true && "This is a true response"}</span>
                         <span>{post == false && "This is a false response"}</span>
