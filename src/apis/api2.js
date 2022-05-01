@@ -8,7 +8,7 @@ const Api = () => {
 
     var a;
     useEffect(() => {
-        let res = RestFulApi('http://localhost/apis/api.php?fn=hey&arg1=kian_se')
+        let res = RestFulApi('https://apis.kikiq.ir/api.php?fn=hey&arg1=kian_se')
         res.then(function (value) {
             console.log("value: ", value)
             a = value

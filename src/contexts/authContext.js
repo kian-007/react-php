@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { RestFulApi } from '../apis/api';
 
 export const AuthContext = createContext();
 
@@ -6,6 +7,7 @@ const AuthContextProvider = (props) => {
 
     const [currentUserData, setCurrentUserData] = useState(null)
     const [currentUserId, setCurrentUserId] = useState(null)
+    const [user, setUser] = useState([])
 
 
 
@@ -50,20 +52,30 @@ const AuthContextProvider = (props) => {
     }
 
 
-
-    function user_login(id) {
-        setCurrentUserId(id)
-
+    var a;
+    function user_login(username) {
+        // setCurrentUserId(id)
         // user_logout();
-        // $user = get_user($username);
+        let func = "get_user2"
+        let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=${func}&arg1=${username}`)
 
-        // if (!$user) {
+        res.then(function (value) {
+            setUser(value)
+            setCurrentUserId("done")
+            console.log("user: ", user)
+        });
+        
+        console.log("user2: ", user)
+
+        // if (!user) {
         //     return;
         // }
 
-        // if (sha1($password) != $user['password']) {
+        // if (password != user['password']) {
         //     return;
         // }
+
+        // console.log("The end of login. ")
 
         // global $current_user;
         // global $current_user_id;

@@ -5,10 +5,17 @@ import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
 import Message from '../../utils/message/message';
 import { ValidateUsername, ValidatePassword } from '../../utils/validation';
 import './logIn.css';
+// import sha1 from 'crypto-js/sha1';
+// import CryptoJS from 'crypto-js';
+// import cryptoJs from 'crypto-js';
+// import Base64 from 'crypto-js/enc-base64';
+// import {createHash,update,digest} from 'crypto'
 
 const LogIn = () => {
     const [userInput, setUserInput] = useState("")
     const [passInput, setPassInput] = useState("")
+    const [userInputText, setUserInputText] = useState("")
+    const [passInputText, setPassInputText] = useState("")
     const inputsform = useRef(null)
     const inputfocus = useRef(null)
     const buttonSubmitRef = useRef(null)
@@ -22,6 +29,7 @@ const LogIn = () => {
     // console.log("function existense", typeof authentication.is_user_logged_in)
 
     const handleUserInput = (event) => {
+        setUserInputText(event.target.value)
         if (event.target.value.length === 0) {
             setErrors({
                 ...errors,
@@ -44,6 +52,7 @@ const LogIn = () => {
     }
 
     const handlePassInput = (event) => {
+        setPassInputText(event.target.value)
         if (event.target.value.length === 0) {
             setErrors({
                 ...errors,
@@ -107,21 +116,24 @@ const LogIn = () => {
             return;
         }
         setLoading(true)
-        let finalResponse = RestFulApi(`http://localhost/apis/api.php?fn=get_user2&arg1=${userInput}`)
+        let finalResponse = RestFulApi(`https://apis.kikiq.ir/api.php?fn=get_user2&arg1=${userInput}`)
 
         finalResponse.then(function (value) {
             a = value
             setPost(a)
             setLoading(false);
             buttonSubmitRef.current.classList.add('activeButtonLogin')
-            login("09198361951")
+            login(userInput)
             console.log("userId", currentUserId)
         });
 
         finalResponse.catch(function (reason) {
             setLoading(false)
         });
+        setUserInputText("")
+        setPassInputText("")
     }
+
 
     let postObjectLenght;
     const checkType = () => {
@@ -133,7 +145,7 @@ const LogIn = () => {
 
     if (typeof post == "object") {
         postObjectLenght = checkType();
-        console.log("object length: ", postObjectLenght)
+        // console.log("object length: ", postObjectLenght)
     }
 
 
@@ -144,6 +156,15 @@ const LogIn = () => {
         // msgref.current.classList.add('msgref')
         inputfocus.current.focus();
     }, [])
+
+    // let message = "King.kian007"
+    // useEffect(() => {
+        // var shasum = createHash('sha1')
+        // shasum.update('King.kian007')
+        // shasum.digest('hex')
+        // console.log("shasum: ", shasum)
+
+    // }, [passInput])
 
 
 
@@ -162,19 +183,19 @@ const LogIn = () => {
 
                 <div className="formInput username">
                     {errors.username && <span className="Errors">{errors.username}</span>}
-                    <input ref={inputfocus} type="text" onChange={handleUserInput} placeholder="test" />
+                    <input ref={inputfocus} type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
                     <label>Username</label>
                 </div>
 
                 <div className="formInput password">
                     {errors.password && <span className="Errors">{errors.password}</span>}
-                    <input type="text" onChange={handlePassInput} placeholder="Test.123" />
+                    <input type="text" value={passInputText} onChange={handlePassInput} placeholder="Test.123" />
                     <label>Password</label>
                 </div>
 
 
                 <div ref={buttonSubmitRef}>
-                    <ButtonComponent handleClick={() => { handleSubmit(); checkType() }} btntype="submit" btnform="form1"  >
+                    <ButtonComponent handleClick={() => { handleSubmit(); checkType(); login(userInput) }} btntype="submit" btnform="form1"  >
                         LogIn
                     </ButtonComponent>
                 </div>
@@ -189,7 +210,7 @@ const LogIn = () => {
                 {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (
                     post != null && typeof (post) == "string" || typeof (post) == "number" ? (
                         <span>{post}</span>
-                    ) : post != null &&  (
+                    ) : post != null && (
                         <div>
                             {Object.keys(post).map(item => (
                                 <div>
