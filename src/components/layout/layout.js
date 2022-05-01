@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext , useEffect} from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import CartContextProvider from '../../contexts/cartContext';
@@ -6,8 +6,12 @@ import './layout.css';
 import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
 
 const Layout = ({ children }) => {
-    const { currentUserId } = useContext(AuthContext)
-    console.log("currentUser", currentUserId)
+    const { currentUserData, currentUserId } = useContext(AuthContext)
+
+    useEffect(() => {
+        console.log("currentUserId", currentUserId)
+        console.log("currentUserData", currentUserData)
+    }, [currentUserId, currentUserData])
 
     return (
 

@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { RestFulApi } from '../apis/api';
+import Message from '../utils/message/message';
 
 export const AuthContext = createContext();
 
@@ -52,8 +53,8 @@ const AuthContextProvider = (props) => {
     }
 
 
-    var a;
-    function user_login(username) {
+
+    function user_login(username, password) {
         // setCurrentUserId(id)
         // user_logout();
         let func = "get_user2"
@@ -61,27 +62,24 @@ const AuthContextProvider = (props) => {
 
         res.then(function (value) {
             setUser(value)
-            setCurrentUserId("done")
-            console.log("user: ", user)
         });
+        res.catch(function (reason) {
+            // <Message>The server is not currently responsive!</Message>
+            // <Message clas="error">{reason}</Message>
+            console.log(reason)
+        })
+
+        if (!user) {
+            return;
+        }
+
+        if (password != user['password']) {
+            return;
+        }
+
+        setCurrentUserData(user);
+        setCurrentUserId(user['id']);
         
-        console.log("user2: ", user)
-
-        // if (!user) {
-        //     return;
-        // }
-
-        // if (password != user['password']) {
-        //     return;
-        // }
-
-        // console.log("The end of login. ")
-
-        // global $current_user;
-        // global $current_user_id;
-        // $current_user = $user;
-        // $current_user_id = $user['id'];
-
 
         // $_SESSION['last_access'] = time();
         // $_SESSION['user_id'] = $current_user_id;

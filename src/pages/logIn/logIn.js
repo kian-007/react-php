@@ -16,15 +16,15 @@ const LogIn = () => {
     const [passInput, setPassInput] = useState("")
     const [userInputText, setUserInputText] = useState("")
     const [passInputText, setPassInputText] = useState("")
-    const inputsform = useRef(null)
-    const inputfocus = useRef(null)
-    const buttonSubmitRef = useRef(null)
     const [post, setPost] = useState([])
     const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(false)
-    const { login, currentUserId } = useContext(AuthContext)
+    const [refresh, setRefresh] = useState(0)
+    const inputsform = useRef(null)
+    const inputfocus = useRef(null)
+    const buttonSubmitRef = useRef(null)
+    const { login, currentUserId, currentUserData } = useContext(AuthContext)
     // window.location.replace("http://localhost:3000/");
-
 
     // console.log("function existense", typeof authentication.is_user_logged_in)
 
@@ -107,6 +107,10 @@ const LogIn = () => {
 
     }
 
+    const refreshhh = () => {
+        setRefresh(refresh + 1)
+        console.log("refreshhh", refresh)
+    }
 
     var a;
     var p;
@@ -116,23 +120,35 @@ const LogIn = () => {
             return;
         }
         setLoading(true)
-        let finalResponse = RestFulApi(`https://apis.kikiq.ir/api.php?fn=get_user2&arg1=${userInput}`)
-
-        finalResponse.then(function (value) {
-            a = value
-            setPost(a)
-            setLoading(false);
-            buttonSubmitRef.current.classList.add('activeButtonLogin')
-            login(userInput)
-            console.log("userId", currentUserId)
-        });
-
-        finalResponse.catch(function (reason) {
+        login(userInput, passInput)
+        if(currentUserId != null){
             setLoading(false)
-        });
+            setPost(currentUserData)
+        }
+
+        // let finalResponse = RestFulApi(`https://apis.kikiq.ir/api.php?fn=get_user2&arg1=${userInput}`)
+        // finalResponse.then(function (value) {
+        //     a = value
+        //     setPost(a)
+        //     setLoading(false);
+        //     buttonSubmitRef.current.classList.add('activeButtonLogin')
+        //     login(userInput, passInput)
+        // });
+        // finalResponse.catch(function (reason) {
+        //     setLoading(false)
+        // });
+
         setUserInputText("")
         setPassInputText("")
     }
+
+    useEffect(() => {
+        if (currentUserId != null) {
+            setLoading(false)
+            setPost(currentUserData)
+        }
+    }, [currentUserId, refresh])
+
 
 
     let postObjectLenght;
@@ -159,10 +175,10 @@ const LogIn = () => {
 
     // let message = "King.kian007"
     // useEffect(() => {
-        // var shasum = createHash('sha1')
-        // shasum.update('King.kian007')
-        // shasum.digest('hex')
-        // console.log("shasum: ", shasum)
+    // var shasum = createHash('sha1')
+    // shasum.update('King.kian007')
+    // shasum.digest('hex')
+    // console.log("shasum: ", shasum)
 
     // }, [passInput])
 
@@ -195,7 +211,7 @@ const LogIn = () => {
 
 
                 <div ref={buttonSubmitRef}>
-                    <ButtonComponent handleClick={() => { handleSubmit(); checkType(); login(userInput) }} btntype="submit" btnform="form1"  >
+                    <ButtonComponent handleClick={() => {handleSubmit(); refreshhh()}} btntype="submit" btnform="form1"  >
                         LogIn
                     </ButtonComponent>
                 </div>
