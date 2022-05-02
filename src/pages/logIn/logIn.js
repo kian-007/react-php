@@ -109,22 +109,29 @@ const LogIn = () => {
 
     const refreshhh = () => {
         setRefresh(refresh + 1)
-        console.log("refreshhh", refresh)
+
     }
 
-    var a;
-    var p;
+    useEffect(() => {
+        console.log("refreshhh", refresh)
+    })
+
+
+
+
+
     const handleSubmit = () => {
-        p = process_inputs()
+        setRefresh(refresh + 1)
+        let p = process_inputs()
         if (p == false) {
             return;
         }
         setLoading(true)
         login(userInput, passInput)
-        if(currentUserId != null){
-            setLoading(false)
-            setPost(currentUserData)
-        }
+        // if(currentUserId != null){
+        setLoading(false)
+        setPost(currentUserData)
+        // }
 
         // let finalResponse = RestFulApi(`https://apis.kikiq.ir/api.php?fn=get_user2&arg1=${userInput}`)
         // finalResponse.then(function (value) {
@@ -143,11 +150,9 @@ const LogIn = () => {
     }
 
     useEffect(() => {
-        if (currentUserId != null) {
-            setLoading(false)
-            setPost(currentUserData)
-        }
-    }, [currentUserId, refresh])
+        setPost(currentUserData)
+    }, [post, refresh, currentUserData])
+
 
 
 
@@ -211,7 +216,7 @@ const LogIn = () => {
 
 
                 <div ref={buttonSubmitRef}>
-                    <ButtonComponent handleClick={() => {handleSubmit(); refreshhh()}} btntype="submit" btnform="form1"  >
+                    <ButtonComponent handleClick={() => { handleSubmit(); refreshhh() }} btntype="submit" btnform="form1"  >
                         LogIn
                     </ButtonComponent>
                 </div>
@@ -236,7 +241,6 @@ const LogIn = () => {
                         </div>
                     )
                 )}
-
                 {post != null && typeof (post) == "boolean" && (
                     <div>
                         <span>{post == true && "This is a true response"}</span>
@@ -244,6 +248,7 @@ const LogIn = () => {
                     </div>
                 )}
 
+                {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (<span>{refresh}</span>)}
                 {/* {post} */}
             </div>
         </div>

@@ -57,8 +57,8 @@ const AuthContextProvider = (props) => {
     function user_login(username, password) {
         // setCurrentUserId(id)
         // user_logout();
-        let func = "get_user2"
-        let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=${func}&arg1=${username}`)
+        // let func = "get_user2"
+        let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=get_user2&arg1=${username}`)
 
         res.then(function (value) {
             setUser(value)
