@@ -9,6 +9,7 @@ const AuthContextProvider = (props) => {
     const [currentUserData, setCurrentUserData] = useState(null)
     const [currentUserId, setCurrentUserId] = useState(null)
     const [user, setUser] = useState([])
+    const [catchError, setCatchError] = useState({})
 
 
 
@@ -66,7 +67,8 @@ const AuthContextProvider = (props) => {
         res.catch(function (reason) {
             // <Message>The server is not currently responsive!</Message>
             // <Message clas="error">{reason}</Message>
-            console.log(reason)
+            setCatchError(reason)
+            // console.log("reason: ",  reason)
         })
 
         if (!user) {
@@ -95,6 +97,7 @@ const AuthContextProvider = (props) => {
             currentUserId,
             setCurrentUserData,
             setCurrentUserId,
+            catchError,
             get_current_user_data,
             get_current_user_id,
             is_authentication_required,

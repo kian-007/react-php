@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { RestFulApi } from '../../apis/api';
 import { ButtonComponent } from '../../components';
-import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
+import { AuthContext } from '../../contexts/authContext';
 import Message from '../../utils/message/message';
 import { ValidateUsername, ValidatePassword } from '../../utils/validation';
 import './logIn.css';
@@ -23,7 +23,7 @@ const LogIn = () => {
     const inputsform = useRef(null)
     const inputfocus = useRef(null)
     const buttonSubmitRef = useRef(null)
-    const { login, currentUserId, currentUserData } = useContext(AuthContext)
+    const { login, currentUserId, currentUserData, catchError } = useContext(AuthContext)
     // window.location.replace("http://localhost:3000/");
 
     // console.log("function existense", typeof authentication.is_user_logged_in)
@@ -107,31 +107,25 @@ const LogIn = () => {
 
     }
 
-    const refreshhh = () => {
-        setRefresh(refresh + 1)
+    // const refreshhh = () => {
+    //     setRefresh(refresh + 1)
 
-    }
+    // }
 
-    useEffect(() => {
-        console.log("refreshhh", refresh)
-    })
 
 
 
 
 
     const handleSubmit = () => {
-        setRefresh(refresh + 1)
         let p = process_inputs()
         if (p == false) {
             return;
         }
         setLoading(true)
-        login(userInput, passInput)
-        // if(currentUserId != null){
-        setLoading(false)
-        setPost(currentUserData)
-        // }
+        setRefresh(refresh + 1)
+        // login(userInput, passInput)
+
 
         // let finalResponse = RestFulApi(`https://apis.kikiq.ir/api.php?fn=get_user2&arg1=${userInput}`)
         // finalResponse.then(function (value) {
@@ -150,8 +144,16 @@ const LogIn = () => {
     }
 
     useEffect(() => {
-        setPost(currentUserData)
-    }, [post, refresh, currentUserData])
+        login(userInput, passInput)
+        if (refresh > 0 && currentUserId) {
+            setLoading(false)
+            setPost(currentUserData)
+        }
+        if(refresh > 0 && !currentUserId) {
+            setLoading(false)
+            setPost("Login failed!")
+        }
+    }, [refresh, login])
 
 
 
@@ -216,7 +218,7 @@ const LogIn = () => {
 
 
                 <div ref={buttonSubmitRef}>
-                    <ButtonComponent handleClick={() => { handleSubmit(); refreshhh() }} btntype="submit" btnform="form1"  >
+                    <ButtonComponent handleClick={() => { handleSubmit() }} btntype="submit" btnform="form1"  >
                         LogIn
                     </ButtonComponent>
                 </div>

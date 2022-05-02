@@ -3,7 +3,7 @@ import Header from '../header/header';
 import Footer from '../footer/footer';
 import CartContextProvider from '../../contexts/cartContext';
 import './layout.css';
-import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
+import { AuthContext } from '../../contexts/authContext';
 
 const Layout = ({ children }) => {
     const { currentUserData, currentUserId } = useContext(AuthContext)
