@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import './navbar.css';
 import { Link } from 'react-router-dom';
@@ -6,11 +6,13 @@ import CATEGORIES from './CATEGORYS.json';
 import { MdShoppingCart } from "react-icons/md";
 import { MdOutlineExpandMore } from "react-icons/md";
 import $ from 'jquery';
+import { AuthContext } from '../../contexts/authContext';
 
 const Navbar = ({ carts }) => {
     const categories = CATEGORIES;
     const [load, setLoad] = useState()
     const location = useLocation();
+    const { is_user_logged_in, currentUserData, logout } = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -57,6 +59,7 @@ const Navbar = ({ carts }) => {
     }, [data, carts])
 
 
+    
 
 
     return (
@@ -67,11 +70,19 @@ const Navbar = ({ carts }) => {
                         <button>HOME</button>
                     </Link>
                 </li>
-                <li className={location.pathname === '/login' && 'MainNavActive'}>
-                    <Link to="/login">
-                        <button>LOGIN</button>
-                    </Link>
-                </li>
+                {is_user_logged_in() ? (
+                    <li className={location.pathname === '/logout' && 'MainNavActive'}>
+                        <button onClick={() =>{logout()}}>LOGOUT</button>
+                    </li>
+                ) : (
+
+                    <li className={location.pathname === '/login' && 'MainNavActive'}>
+                        <Link to="/login">
+                            <button>LOGIN</button>
+                        </Link>
+                    </li>
+                )}
+
                 <li id="shopbtn" className={location.pathname === '/shop' && 'MainNavActive'}>
                     <Link to="/shop" className="nonono">
                         <button id='shopbtn--icon'><span>SHOP</span>
@@ -121,7 +132,16 @@ const Navbar = ({ carts }) => {
                 </li>
             </ul>
             <br />
-        </div>
+
+            {
+                is_user_logged_in() ? (
+                    <div id="greeting">
+                        <span>Hellow {currentUserData['first_name']}</span>
+                    </div>
+                ) : (<></>)
+            }
+
+        </div >
     )
 }
 

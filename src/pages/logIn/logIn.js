@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { RestFulApi } from '../../apis/api';
 import { ButtonComponent } from '../../components';
 import { AuthContext } from '../../contexts/authContext';
+import { getCookie } from '../../utils/functions';
 import Message from '../../utils/message/message';
 import { ValidateUsername, ValidatePassword } from '../../utils/validation';
 import './logIn.css';
@@ -20,11 +21,11 @@ const LogIn = () => {
     const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(false)
     const [refresh, setRefresh] = useState(0)
+    const [submitted, setSubmitted] = useState(false)
     const inputsform = useRef(null)
     const inputfocus = useRef(null)
     const buttonSubmitRef = useRef(null)
     const { login, currentUserId, currentUserData, catchError } = useContext(AuthContext)
-    // window.location.replace("http://localhost:3000/");
 
     // console.log("function existense", typeof authentication.is_user_logged_in)
 
@@ -126,34 +127,28 @@ const LogIn = () => {
         setRefresh(refresh + 1)
         // login(userInput, passInput)
 
-
-        // let finalResponse = RestFulApi(`https://apis.kikiq.ir/api.php?fn=get_user2&arg1=${userInput}`)
-        // finalResponse.then(function (value) {
-        //     a = value
-        //     setPost(a)
-        //     setLoading(false);
-        //     buttonSubmitRef.current.classList.add('activeButtonLogin')
-        //     login(userInput, passInput)
-        // });
-        // finalResponse.catch(function (reason) {
-        //     setLoading(false)
-        // });
-
         setUserInputText("")
         setPassInputText("")
+        setSubmitted(true)
+
+        buttonSubmitRef.current.classList.add('activeButtonLogin')
     }
 
     useEffect(() => {
-        login(userInput, passInput)
-        if (refresh > 0 && currentUserId) {
-            setLoading(false)
-            setPost(currentUserData)
+        let lastAccess = getCookie('last_access')
+        console.log("lastAccess", lastAccess)
+        if (submitted && refresh > 0) {
+            login(userInput, passInput)
+            if (currentUserId) {
+                setLoading(false)
+                setPost(currentUserData)
+            }
+            if (!currentUserId) {
+                setLoading(false)
+                setPost("Login failed!")
+            }
         }
-        if(refresh > 0 && !currentUserId) {
-            setLoading(false)
-            setPost("Login failed!")
-        }
-    }, [refresh, login])
+    }, [refresh, submitted, currentUserId])
 
 
 
@@ -172,6 +167,12 @@ const LogIn = () => {
     }
 
 
+    useEffect(() => {
+        if (currentUserId) {
+            // window.location.replace('http://localhost:3000/home')
+            window.location.href = 'https://kikiq.ir/'
+        }
+    }, [currentUserId])
 
 
     useEffect(() => {

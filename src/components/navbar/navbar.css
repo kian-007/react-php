@@ -155,3 +155,18 @@
         transform: rotate(180deg);
     }
 } */
+
+#greeting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    font-style: italic;
+    margin-bottom: 3px;
+}
+
+#greeting span {
+    text-align: center;
+    border-top: 1px solid #777;
+    width: 100px;
+}
