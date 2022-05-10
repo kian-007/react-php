@@ -12,13 +12,11 @@ const CartSelection = () => {
     // const selections = useParams()
     const { carts, dispatchCart } = useContext(CartContext)
     const [newSelection, setNewSelection] = useState([])
-    const { checkAuthentication } = useContext(AuthContext)
 
-
-
-    useEffect(() => {
-        checkAuthentication(true)
-    }, [])
+    // const { checkAuthentication } = useContext(AuthContext)
+    // useEffect(() => {
+    //     checkAuthentication(true)
+    // }, [])
 
 
 

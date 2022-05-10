@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import Button from '../../components/buttons/button';
+import { AuthContext } from '../../contexts/authContext';
 import { ValidateEmail, ValidateSubject } from '../../utils/validation';
 import './contact.css';
 
@@ -12,6 +13,10 @@ const Contact = () => {
     const [errors, setErrors] = useState({})
     const inputSubjectRef = useRef(null)
     const inputSubmitRef = useRef(null)
+    const { checkAuthentication, currentUserId } = useContext(AuthContext)
+    useEffect(() => {
+        checkAuthentication(true)
+    }, [currentUserId])
 
     const handleChangeInputSubject = (event) => {
         if (ValidateSubject(event.target.value)) {
