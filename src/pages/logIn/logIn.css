@@ -1,5 +1,10 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .LogIn {
-    margin: 50px 5%;
+    margin: 10px 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -103,4 +108,34 @@
 .activeButtonLogin button {
     background-image: linear-gradient(to right, #77afff, purple);
     transition: .5s;
+}
+
+.options ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    margin: 20px auto;
+    padding-right: 37px;
+}
+
+.options ul li {
+    margin-right: 7px;
+    padding: 20px;
+}
+
+.options ul li:first-child {
+    border-right: 1px solid #333;
+}
+
+.options ul li button {
+    border: 0;
+    padding: 10px;
+    font-size: 11px;
+    color: #fff;
+    background-color: var(--secondary);
+    cursor: pointer;
+}
+
+.options ul li button:hover {
+    opacity: .5;
 }

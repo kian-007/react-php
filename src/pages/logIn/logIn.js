@@ -22,6 +22,8 @@ const LogIn = () => {
     const [loading, setLoading] = useState(false)
     const [refresh, setRefresh] = useState(0)
     const [submitted, setSubmitted] = useState(false)
+    const [loginPage, setLoginPage] = useState(true)
+    const [registerPage, setRegisterPage] = useState(false)
     const inputsform = useRef(null)
     const inputfocus = useRef(null)
     const buttonSubmitRef = useRef(null)
@@ -191,70 +193,101 @@ const LogIn = () => {
     // }, [passInput])
 
 
+    const handleRegisterPage = () => {
+        setRegisterPage(true)
+        setLoginPage(false)
+    }
 
+    const handleLoginPage = () => {
+        setRegisterPage(false)
+        setLoginPage(true)
+    }
 
 
     return (
-        <div className="LogIn" ref={inputsform}>
-            {typeof (post) != "object" ? (
-                post != null && post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
-            ) : (
-                post != null && postObjectLenght > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
-            )}
 
+        <div className="container">
 
-            <form onSubmit={(e) => { e.preventDefault() }} className="form" id="form1">
-
-                <div className="formInput username">
-                    {errors.username && <span className="Errors">{errors.username}</span>}
-                    <input ref={inputfocus} type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
-                    <label>Username</label>
-                </div>
-
-                <div className="formInput password">
-                    {errors.password && <span className="Errors">{errors.password}</span>}
-                    <input type="text" value={passInputText} onChange={handlePassInput} placeholder="Test.123" />
-                    <label>Password</label>
-                </div>
-
-
-                <div ref={buttonSubmitRef}>
-                    <ButtonComponent handleClick={() => { handleSubmit() }} btntype="submit" btnform="form1"  >
-                        LogIn
-                    </ButtonComponent>
-                </div>
-            </form>
-
-
-            <div>
-                {post == null && (
-                    <span>There is nothing to show!</span>
-                )}
-
-                {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (
-                    post != null && typeof (post) == "string" || typeof (post) == "number" ? (
-                        <span>{post}</span>
-                    ) : post != null && (
-                        <div>
-                            {Object.keys(post).map(item => (
-                                <div>
-                                    <span>{item}: {post[item]}</span><br />
-                                </div>
-                            ))}
-                        </div>
-                    )
-                )}
-                {post != null && typeof (post) == "boolean" && (
-                    <div>
-                        <span>{post == true && "This is a true response"}</span>
-                        <span>{post == false && "This is a false response"}</span>
-                    </div>
-                )}
-
-                {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (<span>{refresh}</span>)}
-                {/* {post} */}
+            <div className="options">
+                <ul>
+                    <li><button onClick={handleRegisterPage}>Register</button></li>
+                    <li><button onClick={handleLoginPage}>LogIn</button></li>
+                </ul>
             </div>
+
+            {registerPage ? (
+                <div>
+                    hiiiiiiiiiiiiiiiiiiiii
+                </div>
+            ):(<></>)}
+
+
+            {loginPage ? (
+                <div className="LogIn" ref={inputsform}>
+
+
+                    {typeof (post) != "object" ? (
+                        post != null && post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
+                    ) : (
+                        post != null && postObjectLenght > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
+                    )}
+
+
+                    <form onSubmit={(e) => { e.preventDefault() }} className="form" id="form1">
+
+                        <div className="formInput username">
+                            {errors.username && <span className="Errors">{errors.username}</span>}
+                            <input ref={inputfocus} type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
+                            <label>Username</label>
+                        </div>
+
+                        <div className="formInput password">
+                            {errors.password && <span className="Errors">{errors.password}</span>}
+                            <input type="text" value={passInputText} onChange={handlePassInput} placeholder="Test.123" />
+                            <label>Password</label>
+                        </div>
+
+
+                        <div ref={buttonSubmitRef}>
+                            <ButtonComponent handleClick={() => { handleSubmit() }} btntype="submit" btnform="form1"  >
+                                LogIn
+                            </ButtonComponent>
+                        </div>
+                    </form>
+
+
+                    <div>
+                        {post == null && (
+                            <span>There is nothing to show!</span>
+                        )}
+
+                        {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (
+                            post != null && typeof (post) == "string" || typeof (post) == "number" ? (
+                                <span>{post}</span>
+                            ) : post != null && (
+                                <div>
+                                    {Object.keys(post).map(item => (
+                                        <div>
+                                            <span>{item}: {post[item]}</span><br />
+                                        </div>
+                                    ))}
+                                </div>
+                            )
+                        )}
+                        {post != null && typeof (post) == "boolean" && (
+                            <div>
+                                <span>{post == true && "This is a true response"}</span>
+                                <span>{post == false && "This is a false response"}</span>
+                            </div>
+                        )}
+
+                        {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (<span>{refresh}</span>)}
+                        {/* {post} */}
+                    </div>
+                </div>
+            ) : (<></>)}
         </div>
+
     );
 }
 
