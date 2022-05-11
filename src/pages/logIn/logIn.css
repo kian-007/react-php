@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
+    margin: 45px 5%;
 }
 
 .LogIn {
@@ -12,7 +13,7 @@
 }
 
 .LogIn .form {
-    padding: 30px;
+    padding: 15px 77px;
     background-color: var(--primary);
     display: flex;
     flex-direction: column;
@@ -38,7 +39,7 @@
     font-size: 17px;
     z-index: 1;
     color: var(--black);
-    max-width: 227px;
+    max-width: 200px;
 }
 
 .LogIn .formInput input:hover {
@@ -63,7 +64,7 @@
 
 .LogIn .formInput input:focus~label {
     position: relative;
-    margin-left: -66px;
+    margin-left: -110px;
     margin-top: -22px;
     font-size: 13px;
     color: white;
@@ -125,11 +126,12 @@
 
 .options ul li:first-child {
     border-right: 1px solid #333;
+    margin-right: 0px;
 }
 
 .options ul li button {
     border: 0;
-    padding: 10px;
+    padding: 15px;
     font-size: 11px;
     color: #fff;
     background-color: var(--secondary);
@@ -138,4 +140,11 @@
 
 .options ul li button:hover {
     opacity: .5;
+}
+
+.form h2 {
+    padding: 7px;
+    margin: 7px;
+    color: #444;
+    border-bottom: 1px solid #555;
 }
