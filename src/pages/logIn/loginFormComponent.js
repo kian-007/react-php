@@ -70,7 +70,7 @@ const LoginFormComponent = () => {
         }
     }
 
-    let newUserInput = "";
+    // let newUserInput = "";
 
     const process_inputs = () => {
         if (!userInput) {
@@ -100,14 +100,11 @@ const LoginFormComponent = () => {
         }
 
 
-        newUserInput = userInput.toLowerCase()
+        // newUserInput = userInput.toLowerCase()
 
     }
 
-    // const refreshhh = () => {
-    //     setRefresh(refresh + 1)
-
-    // }
+    
 
 
 
@@ -163,12 +160,6 @@ const LoginFormComponent = () => {
     }
 
 
-    useEffect(() => {
-        if (currentUserId) {
-            // window.location.replace('http://localhost:3000/home')
-            window.location.href = 'https://kikiq.ir/'
-        }
-    }, [currentUserId])
 
 
     useEffect(() => {

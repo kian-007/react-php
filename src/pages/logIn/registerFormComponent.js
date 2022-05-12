@@ -9,8 +9,14 @@ import { ValidateUsername, ValidatePassword } from '../../utils/validation';
 const LoginFormComponent = () => {
     const [userInput, setUserInput] = useState("")
     const [passInput, setPassInput] = useState("")
+    const [passReEnterInput, setPassReEnterInput] = useState("")
+    const [nameInput, setNameInput] = useState("")
+    const [lastNameInput, setLastNameInput] = useState("")
     const [userInputText, setUserInputText] = useState("")
     const [passInputText, setPassInputText] = useState("")
+    const [nameInputText, setNameInputText] = useState("")
+    const [lastNameInputText, setLastNameInputText] = useState("")
+    const [passReEnterInputText, setPassReEnterInputText] = useState("")
     const [post, setPost] = useState([])
     const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(false)
@@ -22,6 +28,44 @@ const LoginFormComponent = () => {
     const { login, currentUserId, currentUserData, catchError } = useContext(AuthContext)
 
     // console.log("function existense", typeof authentication.is_user_logged_in)
+
+    const handleNameInput = (event) => {
+        setNameInputText(event.target.value)
+        if (event.target.value.length === 0) {
+            setErrors({
+                ...errors,
+                firstName: "The FirstName can not be empty.",
+            })
+            setNameInput(event.target.value);
+        } else {
+            setErrors({
+                ...errors,
+                firstName: null,
+            })
+            setNameInput(event.target.value);
+        }
+        
+    }
+   
+
+    const handleLastNameInput = (event) => {
+        setLastNameInputText(event.target.value)
+        if (event.target.value.length === 0) {
+            setErrors({
+                ...errors,
+                lastName: "The LastName can not be empty.",
+            })
+            setLastNameInput(event.target.value);
+        } else {
+            setErrors({
+                ...errors,
+                lastName: null,
+            })
+            setLastNameInput(event.target.value);
+        }
+        
+    }
+
 
     const handleUserInput = (event) => {
         setUserInputText(event.target.value)
@@ -46,6 +90,7 @@ const LoginFormComponent = () => {
         }
     }
 
+
     const handlePassInput = (event) => {
         setPassInputText(event.target.value)
         if (event.target.value.length === 0) {
@@ -68,9 +113,57 @@ const LoginFormComponent = () => {
         }
     }
 
-    let newUserInput = "";
+    const handlePassReEnterInput = (event) => {
+        setPassReEnterInputText(event.target.value)
+        if (event.target.value.length === 0) {
+            setErrors({
+                ...errors,
+                passReEnter: 'The Re-Enter Password can not be empty.'
+            })
+        } else if (ValidatePassword(event.target.value)) {
+            setErrors({
+                ...errors,
+                passReEnter: null,
+            })
+            setPassReEnterInput(event.target.value);
+        } else {
+            setErrors({
+                ...errors,
+                passReEnter: 'The Re-Enter Password is not valid!'
+            })
+            setPassReEnterInput("")
+        }
+    }
 
+
+    // let newUserInput = "";
     const process_inputs = () => {
+        if (!nameInput) {
+            setErrors({
+                ...errors,
+                firstName: "FirstName Validation Error!"
+            })
+            return false;
+        } else {
+            setErrors({
+                ...errors,
+                firstName: null,
+            })
+        }
+
+        if (!lastNameInput) {
+            setErrors({
+                ...errors,
+                lastName: "LastName Validation Error!"
+            })
+            return false;
+        } else {
+            setErrors({
+                ...errors,
+                lastName: null,
+            })
+        }
+
         if (!userInput) {
             setErrors({
                 ...errors,
@@ -97,47 +190,56 @@ const LoginFormComponent = () => {
             })
         }
 
+        if (!passReEnterInput) {
+            setErrors({
+                ...errors,
+                passReEnter: "Re-enter Password Validation Error!"
+            })
+            return false;
+        } else {
+            setErrors({
+                ...errors,
+                passReEnter: null,
+            })
+        }
 
-        newUserInput = userInput.toLowerCase()
-
+        // newUserInput = userInput.toLowerCase()
     }
 
-
-
-
-
+    console.log("Errors", errors)
 
     const handleSubmit = () => {
         let p = process_inputs()
         if (p == false) {
             return;
         }
-        setLoading(true)
-        setRefresh(refresh + 1)
-        // login(userInput, passInput)
+        // setLoading(true)
+        // setRefresh(refresh + 1)
+        // // login(userInput, passInput)
 
-        setUserInputText("")
-        setPassInputText("")
-        setSubmitted(true)
+        // setUserInputText("")
+        // setPassInputText("")
+        // setSubmitted(true)
 
-        buttonSubmitRef.current.classList.add('activeButtonLogin')
+        // buttonSubmitRef.current.classList.add('activeButtonLogin')
     }
 
-    useEffect(() => {
-        let lastAccess = getCookie('last_access')
-        console.log("lastAccess", lastAccess)
-        if (submitted && refresh > 0) {
-            login(userInput, passInput)
-            if (currentUserId) {
-                setLoading(false)
-                setPost(currentUserData)
-            }
-            if (!currentUserId) {
-                setLoading(false)
-                setPost("Login failed!")
-            }
-        }
-    }, [refresh, submitted, currentUserId])
+
+    // useEffect(() => {
+    //     let lastAccess = getCookie('last_access')
+    //     console.log("lastAccess", lastAccess)
+    //     if (submitted && refresh > 0) {
+    //         login(userInput, passInput)
+    //         if (currentUserId) {
+    //             setLoading(false)
+    //             setPost(currentUserData)
+    //         }
+    //         if (!currentUserId) {
+    //             setLoading(false)
+    //             setPost("Login failed!")
+    //         }
+    //     }
+    // }, [refresh, submitted, currentUserId])
 
 
 
@@ -178,20 +280,20 @@ const LoginFormComponent = () => {
                 <h2>Register</h2>
 
                 <div className="formInput username">
-                    {errors.username && <span className="Errors">{errors.username}</span>}
-                    <input ref={inputfocus} type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
+                    {errors.firstName && <span className="Errors">{errors.firstName}</span>}
+                    <input ref={inputfocus} type="text" value={nameInputText} onChange={handleNameInput} placeholder="john" />
                     <label>Your name</label>
                 </div>
                 
                 <div className="formInput username">
-                    {errors.username && <span className="Errors">{errors.username}</span>}
-                    <input ref={inputfocus} type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
+                    {errors.lastName && <span className="Errors">{errors.lastName}</span>}
+                    <input type="text" value={lastNameInputText} onChange={handleLastNameInput} placeholder="smith" />
                     <label>Your Last name</label>
                 </div>
                 
                 <div className="formInput username">
                     {errors.username && <span className="Errors">{errors.username}</span>}
-                    <input ref={inputfocus} type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
+                    <input type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
                     <label>Username</label>
                 </div>
 
@@ -202,8 +304,8 @@ const LoginFormComponent = () => {
                 </div>
                 
                 <div className="formInput password">
-                    {errors.password && <span className="Errors">{errors.password}</span>}
-                    <input type="text" value={passInputText} onChange={handlePassInput} placeholder="Test.123" />
+                    {errors.passReEnter && <span className="Errors">{errors.passReEnter}</span>}
+                    <input type="text" value={passReEnterInputText} onChange={handlePassReEnterInput} placeholder="Test.123" />
                     <label>Re-enter password</label>
                 </div>
 
@@ -217,7 +319,7 @@ const LoginFormComponent = () => {
 
 
             <div>
-                {post == null && (
+                {/* {post == null && (
                     <span>There is nothing to show!</span>
                 )}
 
@@ -241,7 +343,7 @@ const LoginFormComponent = () => {
                     </div>
                 )}
 
-                {/* {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (<span>{refresh}</span>)} */}
+                {loading ? (<span style={{ color: "var(--black)" }}>Loading...</span>) : (<span>{refresh}</span>)} */}
                 {/* {post} */}
             </div>
         </div>

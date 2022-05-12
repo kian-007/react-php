@@ -11,10 +11,11 @@ const ButtonComponent = ({
         stylex,
         btntype,
         btnform,
+        name,
         ...props
     }) => {
         return (
-            <button onClick={handleClick} type={btntype} form={btnform}  className={`Button ${cl}`} {...props}  >
+            <button onClick={handleClick} type={btntype} form={btnform} name={name}  className={`Button ${cl}`} {...props}  >
                 {children}
             </button>
 

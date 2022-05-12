@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
+import { AuthContext } from '../../contexts/authContext';
 import './logIn.css';
 import LoginFormComponent from './loginFormComponent'
 import RegisterFormComponent from './registerFormComponent'
@@ -11,6 +12,7 @@ import RegisterFormComponent from './registerFormComponent'
 const LogIn = () => {
     const [loginPage, setLoginPage] = useState(true)
     const [registerPage, setRegisterPage] = useState(false)
+    const { login, currentUserId, currentUserData, catchError, is_user_logged_in } = useContext(AuthContext)
 
     const handleRegisterPage = () => {
         setRegisterPage(true)
@@ -21,6 +23,14 @@ const LogIn = () => {
         setRegisterPage(false)
         setLoginPage(true)
     }
+
+
+    useEffect(() => {
+        if (is_user_logged_in()) {
+            // window.location.replace('http://localhost:3000/home')
+            window.location.href = 'https://kikiq.ir/'
+        }
+    }, [currentUserId])
 
 
     return (
