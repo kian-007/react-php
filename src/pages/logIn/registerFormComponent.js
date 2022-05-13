@@ -210,11 +210,11 @@ const LoginFormComponent = () => {
 
     const handleSubmit = () => {
         let p = process_inputs()
-        if (p == false) {
+        if (p === false) {
             return;
         }
 
-        if (passInput != passReEnterInput) {
+        if (passInput !== passReEnterInput) {
             setErrors({
                 ...errors,
                 passReEnter: "Re-enter Password Validation Error!"
@@ -257,17 +257,17 @@ const LoginFormComponent = () => {
         })
 
         let userVolunteer = {
-            'first_name': nameInput,
-            'last_name': lastNameInput,
-            'username': userInput,
-            'password': passInput
+            first_name: nameInput,
+            last_name: lastNameInput,
+            username: userInput,
+            password: passInput
         }
 
-        console.log("userVolunteer", userVolunteer)
+        const myJSON = JSON.stringify(userVolunteer);
 
-        let addUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=add_user&arg1=${userVolunteer}`)
+        let addUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=add_user&arg1=${myJSON}`)
         addUser.then(function (response) {
-            login(userInput, passInput);
+            console.log(response)
         })
         addUser.catch(function (reason) {
             setErrors({
@@ -277,35 +277,37 @@ const LoginFormComponent = () => {
             return;
         })
 
+        
 
 
-        // setLoading(true)
-        // setRefresh(refresh + 1)
+
+        setLoading(true)
+        setRefresh(refresh + 1)
         // // login(userInput, passInput)
 
-        // setUserInputText("")
-        // setPassInputText("")
-        // setSubmitted(true)
+        setUserInputText("")
+        setPassInputText("")
+        setSubmitted(true)
 
         // buttonSubmitRef.current.classList.add('activeButtonLogin')
     }
 
 
-    // useEffect(() => {
-    //     let lastAccess = getCookie('last_access')
-    //     console.log("lastAccess", lastAccess)
-    //     if (submitted && refresh > 0) {
-    //         login(userInput, passInput)
-    //         if (currentUserId) {
-    //             setLoading(false)
-    //             setPost(currentUserData)
-    //         }
-    //         if (!currentUserId) {
-    //             setLoading(false)
-    //             setPost("Login failed!")
-    //         }
-    //     }
-    // }, [refresh, submitted, currentUserId])
+    useEffect(() => {
+        let lastAccess = getCookie('last_access')
+        console.log("lastAccess", lastAccess)
+        if (submitted && refresh > 0) {
+            login(userInput, passInput)
+            if (currentUserId) {
+                setLoading(false)
+                setPost(currentUserData)
+            }
+            if (!currentUserId) {
+                setLoading(false)
+                setPost("Login failed!")
+            }
+        }
+    }, [refresh, submitted, currentUserId])
 
 
 
@@ -344,6 +346,7 @@ const LoginFormComponent = () => {
         <div className="LogIn" ref={inputsform}>
 
             {errors.server != null && errorObjectLenght > 0 && (<Message error={errors.server} clas="error" stylee={{ display: "block" }}></Message>)}
+            {submitted && (<Message clas="info" stylee={{ display: "block" }}>Registration was successful</Message>)}
 
             {typeof (post) != "object" ? (
                 post != null && post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
@@ -370,7 +373,7 @@ const LoginFormComponent = () => {
 
                 <div className="formInput username">
                     {errors.username && <span className="Errors">{errors.username}</span>}
-                    <input type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
+                    <input type="text" value={userInputText} onChange={handleUserInput} placeholder="test_123" />
                     <label>Username</label>
                 </div>
 

@@ -134,7 +134,7 @@ const Navbar = ({ carts }) => {
             <br />
 
             {
-                is_user_logged_in() ? (
+                is_user_logged_in() && currentUserData !== null ? (
                     <div id="greeting">
                         <span>Hellow {currentUserData['first_name']}</span>
                     </div>

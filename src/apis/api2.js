@@ -7,8 +7,10 @@ const Api = () => {
 
 
     var a;
+    let obj = {name: 'kian', age: 23}
     useEffect(() => {
-        let res = RestFulApi('https://apis.kikiq.ir/api.php?fn=hey&arg1=kian_se')
+        const myJSON = JSON.stringify(obj);
+        let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=arr&arg1=${myJSON}`)
         res.then(function (value) {
             console.log("value: ", value)
             a = value

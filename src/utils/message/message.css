@@ -17,7 +17,7 @@
     background-color: #ffc0cb;
 }
 
-.Message.information {
+.Message.info {
     background-color: var(--primary);
 }
 
