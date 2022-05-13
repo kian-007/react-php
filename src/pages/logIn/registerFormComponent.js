@@ -44,9 +44,9 @@ const LoginFormComponent = () => {
             })
             setNameInput(event.target.value);
         }
-        
+
     }
-   
+
 
     const handleLastNameInput = (event) => {
         setLastNameInputText(event.target.value)
@@ -63,7 +63,7 @@ const LoginFormComponent = () => {
             })
             setLastNameInput(event.target.value);
         }
-        
+
     }
 
 
@@ -213,6 +213,72 @@ const LoginFormComponent = () => {
         if (p == false) {
             return;
         }
+
+        if (passInput != passReEnterInput) {
+            setErrors({
+                ...errors,
+                passReEnter: "Re-enter Password Validation Error!"
+            })
+            return;
+        }
+
+        let userExists = RestFulApi(`https://apis.kikiq.ir/api.php?fn=user_exists&arg1=${userInput}`)
+        userExists.then(function (exists) {
+            if (exists) {
+                setErrors({
+                    ...errors,
+                    username: "This user name already exists!",
+                    // server: null
+                })
+                return;
+                // {<Message clas="error" stylee={{ display: "block" }}>This user name already exists!</Message>}
+            } else {
+                setErrors({
+                    ...errors,
+                    username: null
+                })
+            }
+        })
+
+        userExists.catch(function (reason) {
+            // <Message clas="error" stylee={{ display: "block" }}>Server Error! {reason}</Message>
+            if (reason) {
+                setErrors({
+                    ...errors,
+                    server: "Server Error!"
+                })
+                return;
+            } else {
+                setErrors({
+                    ...errors,
+                    server: null
+                })
+            }
+        })
+
+        let userVolunteer = {
+            'first_name': nameInput,
+            'last_name': lastNameInput,
+            'username': userInput,
+            'password': passInput
+        }
+
+        console.log("userVolunteer", userVolunteer)
+
+        let addUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=add_user&arg1=${userVolunteer}`)
+        addUser.then(function (response) {
+            login(userInput, passInput);
+        })
+        addUser.catch(function (reason) {
+            setErrors({
+                ...errors,
+                server: "Server Error!"
+            })
+            return;
+        })
+
+
+
         // setLoading(true)
         // setRefresh(refresh + 1)
         // // login(userInput, passInput)
@@ -245,15 +311,24 @@ const LoginFormComponent = () => {
 
 
     let postObjectLenght;
-    const checkType = () => {
+    let errorObjectLenght;
+    const checkTypePost = () => {
         if (typeof post == "object" && post != null) {
             postObjectLenght = Object.keys(post).length
             return postObjectLenght;
         }
     }
 
+    const checkTypeErrors = () => {
+        if (typeof errors == "object" && errors != null) {
+            errorObjectLenght = Object.keys(errors).length
+            return errorObjectLenght;
+        }
+    }
+
     if (typeof post == "object") {
-        postObjectLenght = checkType();
+        postObjectLenght = checkTypePost();
+        errorObjectLenght = checkTypeErrors();
         // console.log("object length: ", postObjectLenght)
     }
 
@@ -268,6 +343,7 @@ const LoginFormComponent = () => {
     return (
         <div className="LogIn" ref={inputsform}>
 
+            {errors.server != null && errorObjectLenght > 0 && (<Message error={errors.server} clas="error" stylee={{ display: "block" }}></Message>)}
 
             {typeof (post) != "object" ? (
                 post != null && post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
@@ -275,6 +351,7 @@ const LoginFormComponent = () => {
                 post != null && postObjectLenght > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)
             )}
 
+            {/* {errors.username != null && errorObjectLenght > 0 &&  (<Message error={errors.username} clas="error" stylee={{ display: "block" }}></Message>)} */}
 
             <form onSubmit={(e) => { e.preventDefault() }} className="form" id="form2">
                 <h2>Register</h2>
@@ -284,13 +361,13 @@ const LoginFormComponent = () => {
                     <input ref={inputfocus} type="text" value={nameInputText} onChange={handleNameInput} placeholder="john" />
                     <label>Your name</label>
                 </div>
-                
+
                 <div className="formInput username">
                     {errors.lastName && <span className="Errors">{errors.lastName}</span>}
                     <input type="text" value={lastNameInputText} onChange={handleLastNameInput} placeholder="smith" />
                     <label>Your Last name</label>
                 </div>
-                
+
                 <div className="formInput username">
                     {errors.username && <span className="Errors">{errors.username}</span>}
                     <input type="text" value={userInputText} onChange={handleUserInput} placeholder="test" />
@@ -302,7 +379,7 @@ const LoginFormComponent = () => {
                     <input type="text" value={passInputText} onChange={handlePassInput} placeholder="Test.123" />
                     <label>Password</label>
                 </div>
-                
+
                 <div className="formInput password">
                     {errors.passReEnter && <span className="Errors">{errors.passReEnter}</span>}
                     <input type="text" value={passReEnterInputText} onChange={handlePassReEnterInput} placeholder="Test.123" />
