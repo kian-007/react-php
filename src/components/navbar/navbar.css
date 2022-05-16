@@ -170,3 +170,30 @@
     border-top: 1px solid #777;
     width: 100px;
 }
+
+.navbar .profile--data {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar .profile--data .profile--data--list {
+    display: none;
+    background-color: #ccc;
+}
+
+.navbar .profile--data .profile--data--list li {
+    width: 100%;
+    display: block;
+}
+
+.navbar .profile--data .profile--data--list li button {
+    background-color: #ccc;
+    border: none;
+    color: #fff;
+    width: 100%;
+}
+
+.navbar .profile--data .profile--data--list li button:hover {
+    background-color: #aaa;
+}

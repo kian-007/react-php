@@ -1,8 +1,9 @@
 .Message {
-    width: 70%;
+    width: 85%;
+    min-width: 150px;
     height: 100px;
     display: none;
-    margin: 30px;
+    margin: 10px;
     border-radius: 15px;
     animation: aaerror 2s;
     animation-iteration-count: infinite;
@@ -11,14 +12,17 @@
 
 .Message.success {
     background-color: var(--secondary);
+    margin: 10px;
 }
 
 .Message.error {
     background-color: #ffc0cb;
+    margin: 10px;
 }
 
 .Message.info {
     background-color: var(--primary);
+    margin: 10px;
 }
 
 .Message div {
@@ -68,8 +72,17 @@
 @media only screen and (max-width: 450px) {
     .Message {
         width: 95%;
+        height: 70px;
     }
     .Message span {
         font-size: 15px;
     }
+}
+
+.MessagesHolder {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

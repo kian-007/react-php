@@ -277,7 +277,7 @@ const LoginFormComponent = () => {
             return;
         })
 
-        
+
 
 
 
@@ -338,6 +338,7 @@ const LoginFormComponent = () => {
 
     useEffect(() => {
         inputfocus.current.focus();
+        
     }, [])
 
 
@@ -345,8 +346,10 @@ const LoginFormComponent = () => {
     return (
         <div className="LogIn" ref={inputsform}>
 
-            {errors.server != null && errorObjectLenght > 0 && (<Message error={errors.server} clas="error" stylee={{ display: "block" }}></Message>)}
-            {submitted && (<Message clas="info" stylee={{ display: "block" }}>Registration was successful</Message>)}
+            <div className="MessagesHolder">
+                {errors.server != null && errorObjectLenght > 0 && (<Message error={errors.server} clas="error" stylee={{ display: "block" }}></Message>)}
+                {submitted && (<Message clas="info" stylee={{ display: "block" }}>Registration was successful</Message>)}
+            </div>
 
             {typeof (post) != "object" ? (
                 post != null && post.length > 0 && (<Message clas="success" stylee={{ display: "block" }}>Good Luck ^_^</Message>)

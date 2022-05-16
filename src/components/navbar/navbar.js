@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import './navbar.css';
 import { Link } from 'react-router-dom';
 import CATEGORIES from './CATEGORYS.json';
 import { MdShoppingCart } from "react-icons/md";
 import { MdOutlineExpandMore } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
 import $ from 'jquery';
 import { AuthContext } from '../../contexts/authContext';
 
@@ -49,7 +50,21 @@ const Navbar = ({ carts }) => {
             }
         })
 
+
+
     }, [])
+
+    useEffect(() => {
+        $('.profile').on('mouseover', function () {
+            $('.navbar .profile--data--list').slideDown(150)
+        })
+        $('.profile--data--list').on('mouseleave', function () {
+            $('.navbar .profile--data--list').slideUp(150)
+        })
+        $('*').not('.profile--data--list').on('click', function () {
+            $('.navbar .profile--data--list').slideUp(150)
+        })
+    }, [is_user_logged_in()])
 
     let data = 0;
     data = carts.length;
@@ -59,7 +74,8 @@ const Navbar = ({ carts }) => {
     }, [data, carts])
 
 
-    
+
+
 
 
     return (
@@ -72,7 +88,16 @@ const Navbar = ({ carts }) => {
                 </li>
                 {is_user_logged_in() ? (
                     <li className={location.pathname === '/logout' && 'MainNavActive'}>
-                        <button onClick={() =>{logout()}}>LOGOUT</button>
+                        <Link to="/profile">
+                            <button className="profile">PROFILE</button>
+                        </Link>
+                        <div className="profile--data">
+                            <ul className="profile--data--list">
+                                <li><button>{currentUserData['first_name']}</button></li>
+                                <li><button><CgProfile /> Dashboard </button></li>
+                                <li><button onClick={() => { logout() }}>Logout</button></li>
+                            </ul>
+                        </div>
                     </li>
                 ) : (
 
@@ -133,13 +158,13 @@ const Navbar = ({ carts }) => {
             </ul>
             <br />
 
-            {
+            {/* {
                 is_user_logged_in() && currentUserData !== null ? (
                     <div id="greeting">
                         <span>Hellow {currentUserData['first_name']}</span>
                     </div>
                 ) : (<></>)
-            }
+            } */}
 
         </div >
     )

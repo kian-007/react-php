@@ -13,6 +13,7 @@
 }
 
 .LogIn .form {
+    margin-top: 20px;
     padding: 15px 77px;
     background-color: var(--primary);
     display: flex;

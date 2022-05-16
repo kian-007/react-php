@@ -141,7 +141,7 @@ const LoginFormComponent = () => {
                 setPost("Login failed!")
             }
         }
-    }, [refresh, submitted, currentUserId])
+    }, [refresh, submitted, currentUserId, login])
 
 
 
