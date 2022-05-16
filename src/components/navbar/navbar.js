@@ -88,8 +88,8 @@ const Navbar = ({ carts }) => {
                 </li>
                 {is_user_logged_in() ? (
                     <li className={location.pathname === '/logout' && 'MainNavActive'}>
-                        <Link to="/profile">
-                            <button className="profile">PROFILE</button>
+                        <Link to="/profile" className="nonono">
+                            <button className="profile"><CgProfile size="19"/><span>PROFILE</span></button>
                         </Link>
                         <div className="profile--data">
                             <ul className="profile--data--list">

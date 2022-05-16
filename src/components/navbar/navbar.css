@@ -171,6 +171,15 @@
     width: 100px;
 }
 
+.navbar .profile {
+    display: flex;
+    padding: 12px;
+}
+
+.navbar .profile span {
+    margin-left: 3px;
+}
+
 .navbar .profile--data {
     position: absolute;
     display: flex;

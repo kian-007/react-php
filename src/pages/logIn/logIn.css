@@ -143,9 +143,25 @@
     opacity: .5;
 }
 
-.form h2 {
+.LogIn .form h2 {
     padding: 7px;
     margin: 7px;
     color: #444;
     border-bottom: 1px solid #555;
+    animation: head 800ms;
+}
+
+@keyframes head {
+    0% {
+        margin-left: -150px;
+        display: none;
+        opacity: 0;
+    }
+    40% {
+        opacity: .6;
+    }
+    100% {
+        margin-left: 7px;
+        display: block;
+    }
 }
