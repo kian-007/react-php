@@ -12,6 +12,7 @@ const CartSelection = () => {
     // const selections = useParams()
     const { carts, dispatchCart } = useContext(CartContext)
     const [newSelection, setNewSelection] = useState([])
+    const [cartLength, setCartLength] = useState()
 
     // const { checkAuthentication } = useContext(AuthContext)
     // useEffect(() => {
@@ -52,23 +53,50 @@ const CartSelection = () => {
         })
     }
 
+
+    let data = 0;
+    data = carts.length
+    useEffect(() => {
+        setCartLength(data)
+    }, [data, carts])
+
     return (
-        <ul className="cartselection">
-            {newSelection.map((item) => (
-                <li key={item.id}>
-                    <div>
-                        <h4>{item.name}</h4>
-                        <button className="RemoveShoppingCartButton" onClick={() => { handleRemoveShoppingCart(item.id) }} >
-                            <MdOutlineRemoveShoppingCart className="RemoveShoppingCart" size="25px" />
-                        </button>
-                    </div>
-                    <Link to={`/product/${item.id}`}>
-                        <Image myid="mirrorImage" imageSrc={`${PROJECT_URL}/images/${item.category}/${item.image}`} />
-                    </Link>
-                    <span>{item['price']}</span>
-                </li>
-            ))}
-        </ul>
+        <div className="cartselection">
+            <ul className="cartselection--items">
+                {newSelection.map((item) => (
+                    <li key={item.id}>
+                        <div>
+                            <h4>{item.name}</h4>
+                            <button className="RemoveShoppingCartButton" onClick={() => { handleRemoveShoppingCart(item.id) }} >
+                                <MdOutlineRemoveShoppingCart className="RemoveShoppingCart" size="25px" />
+                            </button>
+                        </div>
+                        <Link to={`/product/${item.id}`}>
+                            <Image myid="mirrorImage" imageSrc={`${PROJECT_URL}/images/${item.category}/${item.image}`} />
+                        </Link>
+                        <span>{item['price']}</span>
+                    </li>
+                ))}
+            </ul>
+
+            <div className="tableHolder">
+                <table>
+                    <tr>
+                        <th>Count</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr>
+                        <td>{cartLength}</td>
+                        <td>25</td>
+                    </tr>
+                    <tr style={{width: '100%'}}>
+                        <td style={{float: 'right'}}>
+                            <button>Complete</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     )
 }
 
