@@ -5,19 +5,35 @@ import './cartSelection.css';
 import { Link } from 'react-router-dom';
 import { PROJECT_URL } from '../../config/general';
 import { Image } from '../';
+import { ButtonComponent } from '../../components'
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
+import $ from 'jquery';
 
 const CartSelection = () => {
     // const selections = useParams()
     const { carts, dispatchCart } = useContext(CartContext)
     const [newSelection, setNewSelection] = useState([])
     const [cartLength, setCartLength] = useState()
+    const [refresh, setRefresh] = useState(0)
 
     // const { checkAuthentication } = useContext(AuthContext)
     // useEffect(() => {
     //     checkAuthentication(true)
     // }, [])
+
+    const handleItems = () => {
+        $('.Button').on('click', function (){
+            $('.showAll').hide()
+            $('.cartselection--items li').slideDown(400)
+        })
+
+        setRefresh(refresh + 1)
+    }
+
+    useEffect(() => {
+        handleItems()
+    }, [refresh])
 
 
 
@@ -60,8 +76,23 @@ const CartSelection = () => {
         setCartLength(data)
     }, [data, carts])
 
+
+    let AllPrices = 0;
+    useEffect(() => {
+        console.log("all", AllPrices)
+    }, [AllPrices])
+
+    let count = 0;
     return (
         <div className="cartselection">
+            {newSelection.map((item) => (
+                <div className="showAll">
+                    {count= count + 1}
+                    <ButtonComponent cl="showItems" >
+                        SHOW Items
+                    </ButtonComponent>
+                </div>
+            ))}
             <ul className="cartselection--items">
                 {newSelection.map((item) => (
                     <li key={item.id}>
@@ -80,6 +111,11 @@ const CartSelection = () => {
             </ul>
 
             <div className="tableHolder">
+
+                {newSelection.map((item) => {
+                    AllPrices += item.price
+                })}
+
                 <table>
                     <tr>
                         <th>Count</th>
@@ -87,10 +123,17 @@ const CartSelection = () => {
                     </tr>
                     <tr>
                         <td>{cartLength}</td>
-                        <td>25</td>
+                        <td>{AllPrices}</td>
                     </tr>
-                    <tr style={{width: '100%'}}>
-                        <td style={{float: 'right'}}>
+                    <hr></hr>
+                    {newSelection.map((item) => (
+                        <tr>
+                            <td>{item.name}</td>
+                            <td>{item.price}</td>
+                        </tr>
+                    ))}
+                    <tr style={{ width: '100%' }}>
+                        <td style={{ float: 'right' }}>
                             <button>Complete</button>
                         </td>
                     </tr>

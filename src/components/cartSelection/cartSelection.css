@@ -5,6 +5,7 @@
 }
 
 .cartselection--items {
+    /* margin-left: 200px; */
     list-style: none;
     display: flex;
     padding: 0;
@@ -14,15 +15,17 @@
 }
 
 .cartselection--items li {
+    /* margin: 10px -110px; */
     margin: 10px;
     width: 180px;
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 10px;
     transition: box-shadow 0.3s, opacity 1.5s 0s;
     border-radius: 7px;
     border: 1px solid #eee;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 50px;
+    /* position: relative; */
 }
 
 .cartselection--items li a {
@@ -97,10 +100,11 @@
 .cartselection .tableHolder {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .cartselection .tableHolder table {
+    margin-top: 45px;
     border: 1px solid #333;
     border-radius: 5px;
     padding: 10px;
@@ -111,4 +115,18 @@
 .cartselection .tableHolder table tr {
     text-align: center;
     margin: 20px;
+}
+
+.showAll {
+    width: 180px;
+    height: 306px;
+    background-color: #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #555;
+    position: relative;
+    margin: 0 -345px;
+    position: relative;
+    left: 500px;
 }
