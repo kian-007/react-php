@@ -115,6 +115,7 @@
 .cartselection .tableHolder table tr {
     text-align: center;
     margin: 20px;
+    color: var(--black);
 }
 
 .showAll {
@@ -129,4 +130,22 @@
     margin: 0 -345px;
     position: relative;
     left: 500px;
+}
+
+.btnComplete {
+    margin: 7px 5px;
+    border: none;
+    offset: none;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    color: #444;
+    background-color: #32ff7e;
+    transition: background-color 400ms;
+    border-radius: 2px;
+}
+
+.btnComplete:hover {
+    background-color: rgb(50, 199, 255);
+    color: #fff;
 }

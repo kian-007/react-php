@@ -17,6 +17,8 @@ export {default as FantasyBrush} from '../pages/beauty/brushes/fantasyBrush/fant
 export {default as BhCosmeticBrush} from '../pages/beauty/brushes/bhCosmeticBrush/bhCosmeticBrush'
 export {default as MaskBrush} from '../pages/beauty/brushes/maskBrush/maskBrush'
 export {default as LogIn} from '../pages/logIn/logIn'
+export {default as CallBackUrl} from '../payment/callBackUrl'
+// export {default as Zibal} from '../payment/payment'
 //components
 export {default as SingleProduct} from './singleProduct/singleProduct'
 export {default as Layout} from './layout/layout'

@@ -5,7 +5,7 @@ import CATEGORY from '../components/navbar/CATEGORYS.json'
 import PRODUCTS from '../pages/ITEMS.json';
 import $ from 'jquery';
 import CartSelection from '../components/cartSelection/cartSelection';
-import { Home, About, Contact, Blog, SingleProduct, Layout, ShowSection, LogIn } from '../components';
+import { Home, About, Contact, Blog, SingleProduct, Layout, ShowSection, LogIn, CallBackUrl } from '../components';
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom';
 import Api from '../apis/api2';
 import AuthContextProvider, { AuthContext } from '../contexts/authContext';
+import Zibal from '../payment/payment'
 
 
 
@@ -64,6 +65,8 @@ function App({ userId }) {
                 <Route path="/cartselection" element={<CartSelection />} />
                 <Route path="/apis" element={<Api />} />
                 <Route path="/login" element={<LogIn />} />
+                <Route path="/callbackurl" element={<CallBackUrl />} />
+                {/* <Route path="/payment" element={<Zibal />} /> */}
               </Routes>
             </Layout>
           </Router>

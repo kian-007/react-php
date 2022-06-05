@@ -1,4 +1,4 @@
-import React, { useParams, useContext, useEffect, useState } from 'react';
+import React, { useParams, useContext, useEffect, useState, useRef } from 'react';
 import { CartContext } from '../../contexts/cartContext';
 import PRODUCTS from '../../pages/ITEMS.json'
 import './cartSelection.css';
@@ -16,14 +16,16 @@ const CartSelection = () => {
     const [newSelection, setNewSelection] = useState([])
     const [cartLength, setCartLength] = useState()
     const [refresh, setRefresh] = useState(0)
+    
 
     // const { checkAuthentication } = useContext(AuthContext)
     // useEffect(() => {
     //     checkAuthentication(true)
     // }, [])
 
+
     const handleItems = () => {
-        $('.Button').on('click', function (){
+        $('.Button').on('click', function () {
             $('.showAll').hide()
             $('.cartselection--items li').slideDown(400)
         })
@@ -78,16 +80,40 @@ const CartSelection = () => {
 
 
     let AllPrices = 0;
-    useEffect(() => {
-        console.log("all", AllPrices)
-    }, [AllPrices])
+    // useEffect(() => {
+    //     console.log("all", AllPrices)
+    // }, [AllPrices])
+
+
+    const ZIBAL_MERCHANT_KEY = "zibal"
+    const ZIBAL_CALLBACK_URL = "https://kikiq.ir/callbackurl"
+    const d = new Date();
+    const ItemsTitle = []
+    newSelection.map((item)=>{
+        ItemsTitle.push(item.name)
+    })
+
+    const process_inputs = () => {
+        
+        let parameters = {
+            "merchant": ZIBAL_MERCHANT_KEY,
+            "callbackUrl": ZIBAL_CALLBACK_URL,
+            "amount": AllPrices,//required
+            "orderId": d,//optional
+            // "mobile": $phone_number,//optional for mpg
+            "description": ItemsTitle,
+        }
+
+        console.log("ProcessInputs", parameters)
+    }
+
 
     let count = 0;
     return (
         <div className="cartselection">
             {newSelection.map((item) => (
                 <div className="showAll">
-                    {count= count + 1}
+                    {count = count + 1}
                     <ButtonComponent cl="showItems" >
                         SHOW Items
                     </ButtonComponent>
@@ -134,7 +160,7 @@ const CartSelection = () => {
                     ))}
                     <tr style={{ width: '100%' }}>
                         <td style={{ float: 'right' }}>
-                            <button>Complete</button>
+                            <button className="btnComplete" onClick={()=>{process_inputs()}}>Complete</button>
                         </td>
                     </tr>
                 </table>
