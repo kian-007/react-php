@@ -9,14 +9,16 @@ import { ButtonComponent } from '../../components'
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
 import $ from 'jquery';
+import { RestFulApi } from '../../apis/api';
 
 const CartSelection = () => {
     // const selections = useParams()
     const { carts, dispatchCart } = useContext(CartContext)
+    const { is_user_logged_in } = useContext(AuthContext)
     const [newSelection, setNewSelection] = useState([])
     const [cartLength, setCartLength] = useState()
     const [refresh, setRefresh] = useState(0)
-    
+
 
     // const { checkAuthentication } = useContext(AuthContext)
     // useEffect(() => {
@@ -89,22 +91,35 @@ const CartSelection = () => {
     const ZIBAL_CALLBACK_URL = "https://kikiq.ir/callbackurl"
     const d = new Date();
     const ItemsTitle = []
-    newSelection.map((item)=>{
+    newSelection.map((item) => {
         ItemsTitle.push(item.name)
     })
 
     const process_inputs = () => {
-        
-        let parameters = {
-            "merchant": ZIBAL_MERCHANT_KEY,
-            "callbackUrl": ZIBAL_CALLBACK_URL,
-            "amount": AllPrices,//required
-            "orderId": d,//optional
-            // "mobile": $phone_number,//optional for mpg
-            "description": ItemsTitle,
-        }
 
-        console.log("ProcessInputs", parameters)
+        let parameters = {
+            merchant: ZIBAL_MERCHANT_KEY,
+            callbackUrl: ZIBAL_CALLBACK_URL,
+            amount: AllPrices,//required
+            orderId: d,//optional
+            // "mobile": $phone_number,//optional for mpg
+            description: ItemsTitle,
+        }
+        const data = JSON.stringify(parameters);
+        // let obj = {name: 'kian', age: 23}
+        // const arg1 = JSON.stringify("request")
+
+        if (is_user_logged_in()) {
+            console.log("data", data)
+            let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=postToZibal&arg1=request&arg2=${data}`)
+
+            res.then(function (value) {
+                console.log("value", value)
+                
+            });
+
+
+        }
     }
 
 
@@ -141,7 +156,7 @@ const CartSelection = () => {
                 {newSelection.map((item) => {
                     AllPrices += item.price
                 })}
-
+                {AllPrices *= 10000}
                 <table>
                     <tr>
                         <th>Count</th>
@@ -149,7 +164,7 @@ const CartSelection = () => {
                     </tr>
                     <tr>
                         <td>{cartLength}</td>
-                        <td>{AllPrices}</td>
+                        <td>{AllPrices} IRR</td>
                     </tr>
                     <hr></hr>
                     {newSelection.map((item) => (
@@ -160,7 +175,7 @@ const CartSelection = () => {
                     ))}
                     <tr style={{ width: '100%' }}>
                         <td style={{ float: 'right' }}>
-                            <button className="btnComplete" onClick={()=>{process_inputs()}}>Complete</button>
+                            <button className="btnComplete" onClick={() => { process_inputs() }}>Complete</button>
                         </td>
                     </tr>
                 </table>

@@ -1,4 +1,5 @@
 const Request = (path) => {
+    // path = JSON.stringify(path);
     const requestapi = async (path) => {
         let response = await fetch(path)
         response = await response.json()
@@ -17,7 +18,8 @@ const RestFulApi = (path) => {
     });
 
     finalResponse.catch(function (reason) {
-        console.log("rejected response ", reason);
+        // console.log("rejected response ", reason);
+        console.log("rejected response ", JSON.stringify(reason));
     });
 
     return thenProm;
