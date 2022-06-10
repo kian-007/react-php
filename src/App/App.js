@@ -13,7 +13,6 @@ import {
 } from 'react-router-dom';
 import Api from '../apis/api2';
 import AuthContextProvider, { AuthContext } from '../contexts/authContext';
-import Zibal from '../payment/payment'
 
 
 
@@ -66,7 +65,6 @@ function App({ userId }) {
                 <Route path="/apis" element={<Api />} />
                 <Route path="/login" element={<LogIn />} />
                 <Route path="/callbackurl" element={<CallBackUrl />} />
-                {/* <Route path="/payment" element={<Zibal />} /> */}
               </Routes>
             </Layout>
           </Router>

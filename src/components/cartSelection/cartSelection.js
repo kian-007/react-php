@@ -82,13 +82,10 @@ const CartSelection = () => {
 
 
     let AllPrices = 0;
-    // useEffect(() => {
-    //     console.log("all", AllPrices)
-    // }, [AllPrices])
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
-    const ZIBAL_CALLBACK_URL = "https://kikiq.ir/callbackurl"
+    const ZIBAL_CALLBACK_URL = "http://localhost:3000/callbackurl"
     const d = new Date();
     const ItemsTitle = []
     newSelection.map((item) => {
@@ -103,7 +100,7 @@ const CartSelection = () => {
             amount: AllPrices,//required
             orderId: d,//optional
             // "mobile": $phone_number,//optional for mpg
-            description: ItemsTitle,
+            // description: ItemsTitle,
         }
         const data = JSON.stringify(parameters);
         // let obj = {name: 'kian', age: 23}
@@ -115,12 +112,19 @@ const CartSelection = () => {
 
             res.then(function (value) {
                 console.log("value", value)
-                
+                console.log("trackId", value['trackId'])
+                const trackId = value['trackId'];
+                window.location.href = `https://gateway.zibal.ir/start/${trackId}`;
+
             });
 
 
+        } else {
+            window.location.replace('https://kikiq.ir/login')
         }
     }
+
+
 
 
     let count = 0;
