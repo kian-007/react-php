@@ -2,7 +2,7 @@
     width: 85%;
     min-width: 150px;
     height: 100px;
-    display: none;
+    /* display: none; */
     margin: 10px;
     border-radius: 15px;
     animation: aaerror 2s;

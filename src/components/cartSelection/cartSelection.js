@@ -85,7 +85,7 @@ const CartSelection = () => {
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
-    const ZIBAL_CALLBACK_URL = "http://localhost:3000/callbackurl"
+    const ZIBAL_CALLBACK_URL = "http://localhost:1463/callbackurl"
     const d = new Date();
     const ItemsTitle = []
     newSelection.map((item) => {
@@ -160,7 +160,6 @@ const CartSelection = () => {
                 {newSelection.map((item) => {
                     AllPrices += item.price
                 })}
-                {AllPrices *= 10000}
                 <table>
                     <tr>
                         <th>Count</th>
@@ -168,7 +167,7 @@ const CartSelection = () => {
                     </tr>
                     <tr>
                         <td>{cartLength}</td>
-                        <td>{AllPrices} IRR</td>
+                        <td>{AllPrices *= 10000} IRR</td>
                     </tr>
                     <hr></hr>
                     {newSelection.map((item) => (
