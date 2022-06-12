@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { RestFulApi } from '../apis/api';
 import './callBackUrl.css';
 import Message from '../utils/message/message';
+import $ from 'jquery'
 
 const CallBackUrl = () => {
     // const par = useParams()
@@ -10,6 +11,8 @@ const CallBackUrl = () => {
     const [successCode, setSuccessCode] = useState("")
     const [message, setMessage] = useState("")
     const [trackId, setTrackId] = useState("")
+    const [value, setValue] = useState({})
+    const callbackRef = useRef(null)
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
@@ -41,6 +44,7 @@ const CallBackUrl = () => {
                 console.log("value: ", value)
                 console.log("message: ", value['message'])
                 setMessage(value['message'])
+                setValue(value)
             });
         }
 
@@ -50,11 +54,52 @@ const CallBackUrl = () => {
         console.log("successCode", successCode)
     }, [successCode])
 
+
+
+    useEffect(() => {
+        window.scrollBy(0, 500);
+    })
+
+
+
+
     return (
-        <div className="callbackurl">
+        <div ref={callbackRef} className="callbackurl">
             {/* {successCode} */}
             {successCode === '1' ? (
-                <Message error={message} clas={message=="success"? "success": "info"}></Message>
+                <div>
+                    <Message error={message} clas={message == "success" ? "success" : "info"}></Message>
+                    {value.status === 1 && value.result === 100 && (
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>cardNumber:</td>
+                                    <td>{value.cardNumber}</td>
+                                </tr>
+                                <tr>
+                                    <td>amount:</td>
+                                    <td>{value.amount}</td>
+                                </tr>
+                                <tr>
+                                    <td>paidAt:</td>
+                                    <td>{value.paidAt}</td>
+                                </tr>
+                                <tr>
+                                    <td>refNumber:</td>
+                                    <td>{value.refNumber}</td>
+                                </tr>
+                                <tr>
+                                    <td>description:</td>
+                                    <td>{value.description}</td>
+                                </tr>
+                                <tr>
+                                    <td>orderId:</td>
+                                    <td>{value.orderId}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    )}
+                </div>
             ) : (
                 <Message clas="error">Faild</Message>
             )}
