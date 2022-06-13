@@ -18,26 +18,37 @@ const Navbar = ({ carts }) => {
 
     useEffect(() => {
 
-        $('#shopbtn').on('mouseover', function () {
+        $('#shop').on('mouseover', function () {
             $('#shoplist').slideDown(270);
             $('.iconExpand').css('transform', "rotate(180deg)");
             $('.iconExpand').css('transition', "350ms");
         })
-        $('#shopbtn').on('mouseout', function () {
+        $('#shop').on('mouseout', function () {
             $('.iconExpand').css('transform', "rotate(360deg)");
         })
 
 
 
-        $('#shopbtn, #shoplist, .mySubNav').on({
-            'mouseover': () => {
-                $('#shoplist').css('display', "flex")
-                $('#shoplist').css('flex-direction', "row")
-            },
-            'mouseout': () => {
-                $('#shoplist').css('display', "none")
+        // $('#shop, #shoplist, .mySubNav').on({
+        //     'mouseover': () => {
+        //         $('#shoplist').css('display', "flex")
+        //         $('#shoplist').css('flex-direction', "row")
+        //     },
+        //     'mouseout': () => {
+        //         $('#shoplist').css('display', "none")
+        //     }
+        // })
+
+        $('#shop').on(
+            'mouseover', function() {
+                $('.shop--container').css('display', "block")
             }
-        })
+        )
+        $('#shop, #shoplist, .mysubnav').on(
+            'mouseout', function() {
+                $('.shop--container').css('display', "none")
+            }
+        )
 
         $('.subNav, .mySubNav').find('li').on({
             'mouseover': function () {
@@ -55,10 +66,10 @@ const Navbar = ({ carts }) => {
     }, [])
 
     useEffect(() => {
-        $('.profile').on('mouseover', function () {
+        $('#profile').on('mouseover', function () {
             $('.navbar .profile--data--list').slideDown(150)
         })
-        $('.profile--data--list').on('mouseleave', function () {
+        $('#profile').on('mouseleave', function () {
             $('.navbar .profile--data--list').slideUp(150)
         })
         $('*').not('.profile--data--list').on('click', function () {
@@ -87,9 +98,9 @@ const Navbar = ({ carts }) => {
                     </Link>
                 </li>
                 {is_user_logged_in() ? (
-                    <li className={location.pathname === '/logout' && 'MainNavActive'}>
-                        <Link to="/profile" className="nonono">
-                            <button className="profile"><CgProfile size="19"/><span>PROFILE</span></button>
+                    <li id="profile" className={location.pathname === '/logout' && 'MainNavActive'}>
+                        <Link to="/profile" className="profile--link">
+                            <button className="profile--link--btn"><CgProfile size="19" /><span>PROFILE</span></button>
                         </Link>
                         <div className="profile--data">
                             <ul className="profile--data--list">
@@ -108,28 +119,30 @@ const Navbar = ({ carts }) => {
                     </li>
                 )}
 
-                <li id="shopbtn" className={location.pathname === '/shop' && 'MainNavActive'}>
-                    <Link to="/shop" className="nonono">
-                        <button id='shopbtn--icon'><span>SHOP</span>
+                <li id="shop" className={location.pathname === '/shop' && 'MainNavActive'}>
+                    <Link to="/shop" className="shop--link">
+                        <button id='shop--link--btn'><span>SHOP</span>
                             {<MdOutlineExpandMore size="15" className="iconExpand" />}
                         </button>
                     </Link>
-                    <ul id="shoplist">
-                        {categories.map((category, index) => (
-                            <li key={index}>
-                                <ul className="subNav mySubNav" id={category.title}>
-                                    <button id={`${category.title}Btn`}>{category.title}</button>
-                                    {category.section.map((sec, index2) => (
-                                        <li className={location.pathname === `/shop/${category.title}/${sec}` && 'SubNavActive'} key={index2}>
-                                            <Link to={`shop/${category.title}/${sec}`}>{sec}</Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </li>
-                        ))}
+                    <div className="shop--container">
+                        <ul id="shoplist">
+                            {categories.map((category, index) => (
+                                <li key={index}>
+                                    <ul className="subNav mySubNav" id={category.title}>
+                                        <button id={`${category.title}Btn`}>{category.title}</button>
+                                        {category.section.map((sec, index2) => (
+                                            <li className={location.pathname === `/shop/${category.title}/${sec}` && 'SubNavActive'} key={index2}>
+                                                <Link to={`shop/${category.title}/${sec}`}>{sec}</Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            ))}
 
 
-                    </ul>
+                        </ul>
+                    </div>
                 </li>
                 <li className={location.pathname === '/blog' && 'MainNavActive'}>
                     <Link to="/blog">

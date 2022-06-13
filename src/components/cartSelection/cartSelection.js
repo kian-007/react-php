@@ -100,7 +100,7 @@ const CartSelection = () => {
             merchant: ZIBAL_MERCHANT_KEY,
             callbackUrl: ZIBAL_CALLBACK_URL,
             amount: AllPrices,//required
-            orderId: d,//optional
+            orderId: d.toLocaleString("fa-IR", {timeZone: "Iran", dateStyle: "full", timeStyle: "medium"}),//optional
             // "mobile": $phone_number,//optional for mpg
             description: ItemsTitle,
         }

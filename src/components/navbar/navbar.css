@@ -107,8 +107,13 @@
     }
 }
 
-#shoplist {
+.shop--container {
     display: none;
+}
+
+#shoplist {
+    display: flex;
+    flex-direction: row;
     background-color: #fff;
     position: absolute;
     width: auto;
@@ -140,11 +145,11 @@
     color: rgb(255, 66, 66);
 }
 
-#shopbtn--icon {
+#shop--link--btn {
     display: flex;
 }
 
-.nonono {
+.navbar a {
     text-decoration: none;
 }
 
@@ -171,12 +176,12 @@
     width: 100px;
 }
 
-.navbar .profile {
+.navbar .profile--link--btn {
     display: flex;
     padding: 12px;
 }
 
-.navbar .profile span {
+.navbar .profile--link--btn span {
     margin-left: 3px;
 }
 

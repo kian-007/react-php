@@ -1,3 +1,46 @@
 .callbackurl {
     margin: 45px 10%;
 }
+
+.callbackurl table {
+    margin: 50px auto;
+    border: 1px solid var(--secondary);
+    border-radius: 6px;
+    width: 70%;
+    background-color: #eee;
+    padding: 15px;
+}
+
+.callbackurl table td {
+    padding: 9px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.callbackurl table tr:hover {
+    background-color: #ddd;
+}
+
+
+/* .callbackurl table tr:hover::after {
+    content: "<<";
+    color: red;
+} */
+
+.callbackurl table tr td:first-child {
+    text-align: right;
+    color: var(--black);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.callbackurl table tr:hover td:first-child::first-letter {
+    color: #fff;
+    /* transition: 0.7s; */
+}
+
+.callbackurl table tr td:nth-child(2) {
+    text-align: center;
+    color: var(--black);
+}
