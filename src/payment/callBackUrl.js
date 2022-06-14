@@ -4,6 +4,7 @@ import { RestFulApi } from '../apis/api';
 import './callBackUrl.css';
 import Message from '../utils/message/message';
 import $ from 'jquery'
+import { MySpinner } from '../components';
 
 const CallBackUrl = () => {
     // const par = useParams()
@@ -12,7 +13,32 @@ const CallBackUrl = () => {
     const [message, setMessage] = useState("")
     const [trackId, setTrackId] = useState("")
     const [value, setValue] = useState({})
+    const [result, setResult] = useState({})
+    const [loading, setLoading] = useState(false)
     const callbackRef = useRef(null)
+
+
+
+    const mystyle = {
+        // borderTop: 'red solid 7px',
+        // borderBottom: 'pink solid 7px',
+        border: '#aaa solid 7px',
+        borderLeft: 'brown solid 7px',
+        borderRight: 'pink solid 7px',
+        width: '70px',
+        height: '70px',
+        margin: 'auto',
+    }
+
+    const loaderholderStyle = {
+        // backgroundColor: '#bbb',
+        padding: '0',
+        margin: '0px auto',
+        width: '200px',
+        height: '200px',
+        flexDirection: 'column',
+    }
+
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
@@ -23,11 +49,6 @@ const CallBackUrl = () => {
     const data = JSON.stringify(parameters);
 
     useEffect(() => {
-        // var xmlHttp = new XMLHttpRequest();
-        // xmlHttp.open("GET", 'https://localhost:3000/callbackurl', true); // false for synchronous request
-        // xmlHttp.send(null);
-        // console.log(xmlHttp.responseText);
-
         // console.log("location", loc)
         let myarr = loc.search.split("&")
         // console.log("myarr", myarr)
@@ -39,12 +60,15 @@ const CallBackUrl = () => {
 
 
         if (successCode == "1") {
+            setLoading(true)
             let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=postToZibal&arg1=verify&arg2=${data}`)
             res.then(function (value) {
                 console.log("value: ", value)
                 console.log("message: ", value['message'])
                 setMessage(value['message'])
+                setResult(value['result'])
                 setValue(value)
+                setLoading(false)
             });
         }
 
@@ -69,6 +93,7 @@ const CallBackUrl = () => {
             {successCode === '1' ? (
                 <div>
                     <Message error={message} clas={message == "success" ? "success" : "info"}></Message>
+                    {loading ? (<MySpinner loaderholderStyle={loaderholderStyle} loaderStyle={mystyle} />):(<></>) }
                     {value.status === 1 && value.result === 100 && (
                         <div>
                             <table>
