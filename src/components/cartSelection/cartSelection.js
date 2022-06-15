@@ -85,7 +85,7 @@ const CartSelection = () => {
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
-    const ZIBAL_CALLBACK_URL = "http://localhost:3000/callbackurl"
+    const ZIBAL_CALLBACK_URL = "http://localhost:1319/callbackurl"
     const d = new Date();
     let ItemsTitle = []
     newSelection.map((item) => {

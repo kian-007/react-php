@@ -9,12 +9,15 @@
     width: 70%;
     background-color: #eee;
     padding: 15px;
+    font-family: Sahel !important;
 }
 
 .callbackurl table td {
     padding: 9px;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
+    max-width: 600px !important;
+    overflow-x: auto;
 }
 
 .callbackurl table tr:hover {
