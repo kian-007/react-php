@@ -15,7 +15,7 @@
 .callbackurl table td {
     padding: 9px;
     border-bottom: 1px solid #ccc;
-    cursor: pointer;
+    cursor: text;
     max-width: 600px !important;
     overflow-x: auto;
 }

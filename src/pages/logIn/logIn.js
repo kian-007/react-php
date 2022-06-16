@@ -27,12 +27,14 @@ const LogIn = () => {
 
     useEffect(() => {
         if (is_user_logged_in()) {
-            // window.location.replace('http://localhost:3000/home')
-            window.location.href = 'https://kikiq.ir/'
+            setTimeout(function () {
+                // window.location.replace('http://localhost:3000/home')
+                window.location.href = 'https://kikiq.ir/'
+            }, 500)
         }
     }, [currentUserId])
 
-    
+
 
 
     return (
@@ -50,7 +52,7 @@ const LogIn = () => {
                 <div>
                     <RegisterFormComponent />
                 </div>
-            ):(<></>)}
+            ) : (<></>)}
 
 
             {loginPage ? (

@@ -12,16 +12,20 @@ const LoginFormComponent = () => {
     const [passReEnterInput, setPassReEnterInput] = useState("")
     const [nameInput, setNameInput] = useState("")
     const [lastNameInput, setLastNameInput] = useState("")
+    const [phoneNumberInput, setPhoneNumberInput] = useState("")
     const [userInputText, setUserInputText] = useState("")
     const [passInputText, setPassInputText] = useState("")
     const [nameInputText, setNameInputText] = useState("")
     const [lastNameInputText, setLastNameInputText] = useState("")
+    const [phoneNumberInputText, setPhoneNumberInputText] = useState("")
     const [passReEnterInputText, setPassReEnterInputText] = useState("")
     const [post, setPost] = useState([])
     const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(false)
     const [refresh, setRefresh] = useState(0)
     const [submitted, setSubmitted] = useState(false)
+    const [clicked, setClicked] = useState(0)
+    const [noError, setNoError] = useState(false)
     const inputsform = useRef(null)
     const inputfocus = useRef(null)
     const buttonSubmitRef = useRef(null)
@@ -64,6 +68,23 @@ const LoginFormComponent = () => {
             setLastNameInput(event.target.value);
         }
 
+    }
+
+    const handlePhoneNumberInput = (event) => {
+        setPhoneNumberInputText(event.target.value)
+        if (event.target.value.length === 0) {
+            setErrors({
+                ...errors,
+                phoneNumber: "The PhoneNumber can not be empty.",
+            })
+            setPhoneNumberInput(event.target.value);
+        } else {
+            setErrors({
+                ...errors,
+                phoneNumber: null,
+            })
+            setPhoneNumberInput(event.target.value);
+        }
     }
 
 
@@ -164,6 +185,19 @@ const LoginFormComponent = () => {
             })
         }
 
+        if (!phoneNumberInput) {
+            setErrors({
+                ...errors,
+                phoneNumber: "PhoneNumber Validation Error!"
+            })
+            return false;
+        } else {
+            setErrors({
+                ...errors,
+                phoneNumber: null,
+            })
+        }
+
         if (!userInput) {
             setErrors({
                 ...errors,
@@ -206,7 +240,7 @@ const LoginFormComponent = () => {
         // newUserInput = userInput.toLowerCase()
     }
 
-    console.log("Errors", errors)
+    // console.log("Errors", errors)
 
     const handleSubmit = () => {
         let p = process_inputs()
@@ -259,6 +293,7 @@ const LoginFormComponent = () => {
         let userVolunteer = {
             first_name: nameInput,
             last_name: lastNameInput,
+            phone_number: phoneNumberInput,
             username: userInput,
             password: passInput
         }
@@ -267,7 +302,7 @@ const LoginFormComponent = () => {
 
         let addUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=add_user&arg1=${myJSON}`)
         addUser.then(function (response) {
-            console.log(response)
+            // console.log(response)
         })
         addUser.catch(function (reason) {
             setErrors({
@@ -282,32 +317,40 @@ const LoginFormComponent = () => {
 
 
         setLoading(true)
-        setRefresh(refresh + 1)
-        // // login(userInput, passInput)
 
-        setUserInputText("")
-        setPassInputText("")
         setSubmitted(true)
+        setRefresh(refresh + 1)
+
+
+        setTimeout(function () {
+            setUserInputText("")
+            setPassInputText("")
+            setPhoneNumberInputText("")
+            setLastNameInputText("")
+            setNameInputText("")
+            setPassReEnterInputText("")
+        }, 400)
+
 
         // buttonSubmitRef.current.classList.add('activeButtonLogin')
     }
 
 
-    useEffect(() => {
-        let lastAccess = getCookie('last_access')
-        console.log("lastAccess", lastAccess)
-        if (submitted && refresh > 0) {
-            login(userInput, passInput)
-            if (currentUserId) {
-                setLoading(false)
-                setPost(currentUserData)
-            }
-            if (!currentUserId) {
-                setLoading(false)
-                setPost("Login failed!")
-            }
-        }
-    }, [refresh, submitted, currentUserId])
+    // useEffect(() => {
+    //     // let lastAccess = getCookie('last_access')
+    //     // console.log("lastAccess", lastAccess)
+    //     if (submitted && refresh > 0) {
+    //         login(userInput, passInput)
+    //         if (currentUserId) {
+    //             setLoading(false)
+    //             setPost(currentUserData)
+    //         }
+    //         if (!currentUserId) {
+    //             setLoading(false)
+    //             setPost("Login failed!")
+    //         }
+    //     }
+    // }, [currentUserId, submitted, refresh])
 
 
 
@@ -328,18 +371,61 @@ const LoginFormComponent = () => {
         }
     }
 
+    const checkNoErrors = () => {
+        let pro = process_inputs()
+        if (pro === false) {
+            return false;
+        }
+        if (
+            errors.firstName == null &&
+            errors.lastName == null &&
+            errors.username == null &&
+            errors.password == null &&
+            errors.passReEnter == null &&
+            errors.phoneNumber == null &&
+            errors.server == null
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     if (typeof post == "object") {
         postObjectLenght = checkTypePost();
         errorObjectLenght = checkTypeErrors();
+        // noError = checkNoErrors()
+        // console.log("NoError", noError);
         // console.log("object length: ", postObjectLenght)
     }
 
 
-
     useEffect(() => {
         inputfocus.current.focus();
-        
+
     }, [])
+
+
+    const handleClicked = () => {
+        let yesorno = checkNoErrors()
+        setNoError(yesorno);
+        if (noError == false) {
+            setClicked(clicked + 1);
+            return false;
+        } else {
+            setClicked(clicked + 1);
+            return true;
+        }
+    }
+
+    useEffect(() => {
+        // console.log("noError", noError)
+        // console.log("clicked", clicked)
+        login(userInput, passInput)
+    }, [clicked, noError, submitted, handleClicked])
+
+
+
 
 
 
@@ -348,7 +434,7 @@ const LoginFormComponent = () => {
 
             <div className="MessagesHolder">
                 {errors.server != null && errorObjectLenght > 0 && (<Message error={errors.server} clas="error" stylee={{ display: "block" }}></Message>)}
-                {submitted && (<Message clas="info" stylee={{ display: "block" }}>Registration was successful</Message>)}
+                {noError == true && clicked == true && submitted == true &&(<Message clas="success" stylee={{ display: "block" }}>Registration was successful, Good Luck ^_^</Message>)}
             </div>
 
             {typeof (post) != "object" ? (
@@ -375,6 +461,12 @@ const LoginFormComponent = () => {
                 </div>
 
                 <div className="formInput username">
+                    {errors.phoneNumber && <span className="Errors">{errors.phoneNumber}</span>}
+                    <input type="text" value={phoneNumberInputText} onChange={handlePhoneNumberInput} placeholder="09*******28" />
+                    <label>phoneNumber</label>
+                </div>
+
+                <div className="formInput username">
                     {errors.username && <span className="Errors">{errors.username}</span>}
                     <input type="text" value={userInputText} onChange={handleUserInput} placeholder="test_123" />
                     <label>Username</label>
@@ -394,9 +486,9 @@ const LoginFormComponent = () => {
 
 
                 <div ref={buttonSubmitRef}>
-                    <ButtonComponent handleClick={() => { handleSubmit() }} btntype="submit" btnform="form2"  >
+                    <button onClick={() => { handleSubmit(); handleClicked() }} type="submit" form="form2"  >
                         LogIn
-                    </ButtonComponent>
+                    </button>
                 </div>
             </form>
 
