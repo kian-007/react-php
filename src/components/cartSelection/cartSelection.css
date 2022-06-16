@@ -149,3 +149,34 @@
     background-color: rgb(50, 199, 255);
     color: #fff;
 }
+
+.getAddress {
+    width: 500px;
+    height: 300px;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.getAddress .getAddress--inputDiv {
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.getAddress .getAddress--inputDiv input {
+    justify-content: center;
+    align-items: center;
+    border: none;
+    offset: none;
+    height: 50%;
+}
+
+.getAddress .getAddress--inputDiv textarea {
+    height: 90%;
+    border: none;
+    offset: none;
+}

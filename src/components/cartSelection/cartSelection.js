@@ -14,11 +14,15 @@ import { RestFulApi } from '../../apis/api';
 const CartSelection = () => {
     // const selections = useParams()
     const { carts, dispatchCart } = useContext(CartContext)
-    const { is_user_logged_in } = useContext(AuthContext)
+    const { currentUserId, is_user_logged_in } = useContext(AuthContext)
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
     const [newSelection, setNewSelection] = useState([])
     const [cartLength, setCartLength] = useState()
     const [refresh, setRefresh] = useState(0)
 
+    useEffect(() => {
+        setIsUserLoggedIn(is_user_logged_in())
+    }, [currentUserId])
 
     // const { checkAuthentication } = useContext(AuthContext)
     // useEffect(() => {
@@ -91,7 +95,7 @@ const CartSelection = () => {
     newSelection.map((item) => {
         ItemsTitle.push(item.name)
     })
-    
+
     ItemsTitle = ItemsTitle.join(", ")
 
     const process_inputs = () => {
@@ -100,13 +104,15 @@ const CartSelection = () => {
             merchant: ZIBAL_MERCHANT_KEY,
             callbackUrl: ZIBAL_CALLBACK_URL,
             amount: AllPrices,//required
-            orderId: d.toLocaleString("fa-IR", {timeZone: "Iran", dateStyle: "full", timeStyle: "medium"}),//optional
+            orderId: d.toLocaleString("fa-IR", { timeZone: "Iran", dateStyle: "full", timeStyle: "medium" }),//optional
             // "mobile": $phone_number,//optional for mpg
             description: ItemsTitle,
         }
         const data = JSON.stringify(parameters);
         // let obj = {name: 'kian', age: 23}
         // const arg1 = JSON.stringify("request")
+
+
 
         if (is_user_logged_in()) {
             console.log("data", data)
@@ -117,9 +123,7 @@ const CartSelection = () => {
                 console.log("trackId", value['trackId'])
                 const trackId = value['trackId'];
                 window.location.href = `https://gateway.zibal.ir/start/${trackId}`;
-
             });
-
 
         } else {
             window.location.replace('https://kikiq.ir/login')
@@ -132,66 +136,92 @@ const CartSelection = () => {
     //     window.scrollBy(0, 1000)
     // })
 
-
+    useEffect(() => {
+        console.log("isUserLoggedIn", isUserLoggedIn)
+    }, [isUserLoggedIn])
 
 
     let count = 0;
     return (
-        <div className="cartselection">
-            {newSelection.map((item) => (
-                <div className="showAll">
-                    {count = count + 1}
-                    <ButtonComponent cl="showItems" >
-                        SHOW Items
-                    </ButtonComponent>
-                </div>
-            ))}
-            <ul className="cartselection--items">
+        <div style={{
+            margin: '45px 10%',
+            display: 'flex',
+            flexDirection: 'column'
+        }}>
+            <div className="cartselection">
                 {newSelection.map((item) => (
-                    <li key={item.id}>
-                        <div>
-                            <h4>{item.name}</h4>
-                            <button className="RemoveShoppingCartButton" onClick={() => { handleRemoveShoppingCart(item.id) }} >
-                                <MdOutlineRemoveShoppingCart className="RemoveShoppingCart" size="25px" />
-                            </button>
-                        </div>
-                        <Link to={`/product/${item.id}`}>
-                            <Image myid="mirrorImage" imageSrc={`${PROJECT_URL}/images/${item.category}/${item.image}`} />
-                        </Link>
-                        <span>{item['price']}</span>
-                    </li>
+                    <div className="showAll">
+                        {count = count + 1}
+                        <ButtonComponent cl="showItems" >
+                            SHOW Items
+                        </ButtonComponent>
+                    </div>
                 ))}
-            </ul>
-
-            <div className="tableHolder">
-
-                {newSelection.map((item) => {
-                    AllPrices += item.price
-                })}
-                <table>
-                    <tr>
-                        <th>Count</th>
-                        <th>Price</th>
-                    </tr>
-                    <tr>
-                        <td>{cartLength}</td>
-                        <td>{AllPrices *= 10000} IRR</td>
-                    </tr>
-                    <hr></hr>
+                <ul className="cartselection--items">
                     {newSelection.map((item) => (
-                        <tr>
-                            <td>{item.name}</td>
-                            <td>{item.price}</td>
-                        </tr>
+                        <li key={item.id}>
+                            <div>
+                                <h4>{item.name}</h4>
+                                <button className="RemoveShoppingCartButton" onClick={() => { handleRemoveShoppingCart(item.id) }} >
+                                    <MdOutlineRemoveShoppingCart className="RemoveShoppingCart" size="25px" />
+                                </button>
+                            </div>
+                            <Link to={`/product/${item.id}`}>
+                                <Image myid="mirrorImage" imageSrc={`${PROJECT_URL}/images/${item.category}/${item.image}`} />
+                            </Link>
+                            <span>{item['price']}</span>
+                        </li>
                     ))}
-                    <tr style={{ width: '100%' }}>
-                        <td style={{ float: 'right' }}>
-                            <button className="btnComplete" onClick={() => { process_inputs() }}>Complete</button>
-                        </td>
-                    </tr>
-                </table>
+                </ul>
+
+                <div className="tableHolder">
+
+                    {newSelection.map((item) => {
+                        AllPrices += item.price
+                    })}
+                    <table>
+                        <tr>
+                            <th>Count</th>
+                            <th>Price</th>
+                        </tr>
+                        <tr>
+                            <td>{cartLength}</td>
+                            <td>{AllPrices *= 10000} IRR</td>
+                        </tr>
+                        <hr></hr>
+                        {newSelection.map((item) => (
+                            <tr>
+                                <td>{item.name}</td>
+                                <td>{item.price}</td>
+                            </tr>
+                        ))}
+                        <tr style={{ width: '100%' }}>
+                            <td style={{ float: 'right' }}>
+                                <button className="btnComplete" onClick={() => { process_inputs() }}>Complete</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
             </div>
-        </div>
+
+            {
+                isUserLoggedIn ? (
+                    <div className="getAddress">
+                        <div className="getAddress--inputDiv">
+                            <input type="text" />
+                        </div>
+                        <div className="getAddress--inputDiv">
+                            <input type="text" />
+                        </div>
+                        <div className="getAddress--inputDiv" style={{flexGrow: '3'}}>
+                            <textarea></textarea>
+                        </div>
+                    </div>
+                ) : (<></>)
+            }
+        </div >
     )
 }
 
