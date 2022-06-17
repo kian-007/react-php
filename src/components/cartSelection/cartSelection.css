@@ -175,6 +175,22 @@
     opacity: 0.9;
 }
 
+#closeBtn {
+    width: 50px;
+    display: flex;
+}
+
+#closeBtn button {
+    margin: auto;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#closeBtn button:hover {
+    background-color: #ff3f3f;
+    outline: 1px solid #fff;
+}
+
 .getAddress .getAddress--inputDiv {
     width: 85%;
     height: 50px;
