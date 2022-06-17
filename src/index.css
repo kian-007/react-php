@@ -26,24 +26,3 @@ code {
     font-weight: 400;
     src: url('/public/font/sahel-font-v1.0.0-alpha14/Sahel.ttf');
 }
-
-
-/* @font-face {
-    font-family: 'Yekan';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/public/font/yekan-font/Yekan.eot');
-}
-
-@font-face {
-    font-family: 'Tanha';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/public/font/tanha-font-v0.9/Tanha.ttf');
-} */
-
-
-/* * {
-    font-family: Sahel !important;
-    font-family: Tanha !important;
-} */

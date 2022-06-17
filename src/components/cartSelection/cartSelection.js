@@ -36,6 +36,14 @@ const CartSelection = () => {
             $('.cartselection--items li').slideDown(400)
         })
 
+        $('.btnComplete').on('click', function () {
+            $('.getAddress').show(500).css('display', 'flex')
+        })
+
+        $('#closeBtn').on('click', function () {
+            $('.getAddress').hide(300)
+        })
+
         setRefresh(refresh + 1)
     }
 
@@ -89,7 +97,7 @@ const CartSelection = () => {
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
-    const ZIBAL_CALLBACK_URL = "http://localhost:1319/callbackurl"
+    const ZIBAL_CALLBACK_URL = "http://localhost:11223/callbackurl"
     const d = new Date();
     let ItemsTitle = []
     newSelection.map((item) => {
@@ -146,7 +154,9 @@ const CartSelection = () => {
         <div style={{
             margin: '45px 10%',
             display: 'flex',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
         }}>
             <div className="cartselection">
                 {newSelection.map((item) => (
@@ -197,7 +207,7 @@ const CartSelection = () => {
                         ))}
                         <tr style={{ width: '100%' }}>
                             <td style={{ float: 'right' }}>
-                                <button className="btnComplete" onClick={() => { process_inputs() }}>Complete</button>
+                                <button className="btnComplete" >Complete</button>
                             </td>
                         </tr>
                     </table>
@@ -208,17 +218,23 @@ const CartSelection = () => {
 
             {
                 isUserLoggedIn ? (
-                    <div className="getAddress">
-                        <div className="getAddress--inputDiv">
-                            <input type="text" />
+                    // <div className="getAddress--holder">
+                        <div id="getAddressId" className="getAddress">
+                            <div id="closeBtn"><button>X</button></div>
+                            <div className="getAddress--inputDiv">
+                                <input type="text" placeholder='City' />
+                            </div>
+                            <div className="getAddress--inputDiv">
+                                <input type="text" placeholder='Postal Code' />
+                            </div>
+                            <div className="getAddress--inputDiv" style={{ flexGrow: '3' }}>
+                                <textarea placeholder='Address'></textarea>
+                            </div>
+                            <div className="getAddress--inputDiv" style={{ marginRight: '54px' }}>
+                                <ButtonComponent cl="getAddress--button" handleClick={() => { process_inputs() }}>Continue</ButtonComponent>
+                            </div>
                         </div>
-                        <div className="getAddress--inputDiv">
-                            <input type="text" />
-                        </div>
-                        <div className="getAddress--inputDiv" style={{flexGrow: '3'}}>
-                            <textarea></textarea>
-                        </div>
-                    </div>
+                    // </div>
                 ) : (<></>)
             }
         </div >

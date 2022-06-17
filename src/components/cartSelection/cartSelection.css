@@ -1,4 +1,5 @@
 .cartselection {
+    width: 90%;
     margin: 45px 10%;
     display: flex;
     justify-content: space-between;
@@ -101,6 +102,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    /* flex-grow: 2; */
 }
 
 .cartselection .tableHolder table {
@@ -150,33 +152,62 @@
     color: #fff;
 }
 
+
+/* .getAddress--holder {
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    opacity: 0.9;
+    display: flex;
+    flex-direction: column;
+} */
+
 .getAddress {
     width: 500px;
     height: 300px;
-    background-color: #eee;
-    display: flex;
+    background-color: var(--black);
+    display: none;
     flex-direction: column;
     padding: 20px;
+    border-radius: 5px;
     margin: 0 auto;
+    position: absolute;
+    opacity: 0.9;
 }
 
 .getAddress .getAddress--inputDiv {
+    width: 85%;
     height: 50px;
     justify-content: center;
     align-items: center;
     margin: auto;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.getAddress .getAddress--inputDiv input {
-    justify-content: center;
-    align-items: center;
+.getAddress .getAddress--inputDiv input[type="text"] {
+    width: 50%;
     border: none;
+    border-radius: 3px;
     offset: none;
     height: 50%;
+    margin-right: 18px;
+    padding: 3px;
+    color: var(--black);
+    font-size: 1em;
+}
+
+ :where(.getAddress .getAddress--inputDiv input[type="text"], .getAddress .getAddress--inputDiv textarea):focus {
+    outline: 2px solid #999;
 }
 
 .getAddress .getAddress--inputDiv textarea {
+    width: 90%;
     height: 90%;
     border: none;
+    border-radius: 3px;
     offset: none;
+    margin: auto;
+    color: var(--black);
+    font-size: 1.3em;
 }
