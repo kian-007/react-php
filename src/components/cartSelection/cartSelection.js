@@ -101,6 +101,9 @@ const CartSelection = () => {
 
     const ZIBAL_MERCHANT_KEY = "zibal"
     const ZIBAL_CALLBACK_URL = "http://localhost:1302/callbackurl"
+    const ADDRESS = address
+    const CITY = city
+    const POSTAL_CODE = postalCode
     // let multiplexingInfos = {bankAccount: "IR000000000000000000000000",amount: 50000}
     // multiplexingInfos = JSON.stringify(multiplexingInfos)
     const d = new Date();
@@ -123,32 +126,30 @@ const CartSelection = () => {
     }
 
     const process_inputs = () => {
-        let user = {
-            id: currentUserData['id'],
-            username: currentUserData['username'],
-            first_name: currentUserData['first_name'],
-            last_name: currentUserData['last_name'],
-            password: currentUserData['password'],
-            password: currentUserData['password'],
-            city: city,
-            postal_code: postalCode,
-            address: address,
-        }
-        user['address'] = address
-        user = JSON.stringify(user)
-        console.log("user", user)
-        let updateUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=update_user&arg1=${user}`)
 
-        updateUser.then(function (response) {
+        console.log("currentUser", currentUserData)
+
+        let user = {
+            username: currentUserData['username'],
+            address: ADDRESS,
+            city: CITY,
+            postal_code: POSTAL_CODE
+        }
+
+
+        const jsonUser = JSON.stringify(user)
+        console.log("user", user)
+        let addUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=add_user&arg1=${jsonUser}`)
+        addUser.then(function (response) {
             console.log(response)
         })
-        updateUser.catch(function (reason) {
+        addUser.catch(function (reason) {
             console.log(reason)
             // setErrors({
             //     ...errors,
             //     server: "Server Error!"
             // })
-            return;
+            // return;
         })
 
         // let parameters = {
