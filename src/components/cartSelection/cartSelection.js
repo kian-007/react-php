@@ -14,11 +14,14 @@ import { RestFulApi } from '../../apis/api';
 const CartSelection = () => {
     // const selections = useParams()
     const { carts, dispatchCart } = useContext(CartContext)
-    const { currentUserId, is_user_logged_in } = useContext(AuthContext)
+    const { currentUserId, currentUserData, is_user_logged_in } = useContext(AuthContext)
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
     const [newSelection, setNewSelection] = useState([])
     const [cartLength, setCartLength] = useState()
     const [refresh, setRefresh] = useState(0)
+    const [city, setCity] = useState("")
+    const [postalCode, setPostalCode] = useState("")
+    const [address, setAddress] = useState("")
 
     useEffect(() => {
         setIsUserLoggedIn(is_user_logged_in())
@@ -97,7 +100,9 @@ const CartSelection = () => {
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
-    const ZIBAL_CALLBACK_URL = "http://localhost:11223/callbackurl"
+    const ZIBAL_CALLBACK_URL = "http://localhost:1302/callbackurl"
+    // let multiplexingInfos = {bankAccount: "IR000000000000000000000000",amount: 50000}
+    // multiplexingInfos = JSON.stringify(multiplexingInfos)
     const d = new Date();
     let ItemsTitle = []
     newSelection.map((item) => {
@@ -106,36 +111,77 @@ const CartSelection = () => {
 
     ItemsTitle = ItemsTitle.join(", ")
 
+
+    const handleCity = (e) => {
+        setCity(e.target.value)
+    }
+    const handlePostalCode = (e) => {
+        setPostalCode(e.target.value)
+    }
+    const handleAddress = (e) => {
+        setAddress(e.target.value)
+    }
+
     const process_inputs = () => {
-
-        let parameters = {
-            merchant: ZIBAL_MERCHANT_KEY,
-            callbackUrl: ZIBAL_CALLBACK_URL,
-            amount: AllPrices,//required
-            orderId: d.toLocaleString("fa-IR", { timeZone: "Iran", dateStyle: "full", timeStyle: "medium" }),//optional
-            // "mobile": $phone_number,//optional for mpg
-            description: ItemsTitle,
+        let user = {
+            id: currentUserData['id'],
+            username: currentUserData['username'],
+            first_name: currentUserData['first_name'],
+            last_name: currentUserData['last_name'],
+            password: currentUserData['password'],
+            password: currentUserData['password'],
+            city: city,
+            postal_code: postalCode,
+            address: address,
         }
-        const data = JSON.stringify(parameters);
-        // let obj = {name: 'kian', age: 23}
-        // const arg1 = JSON.stringify("request")
+        user['address'] = address
+        user = JSON.stringify(user)
+        console.log("user", user)
+        let updateUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=update_user&arg1=${user}`)
+
+        updateUser.then(function (response) {
+            console.log(response)
+        })
+        updateUser.catch(function (reason) {
+            console.log(reason)
+            // setErrors({
+            //     ...errors,
+            //     server: "Server Error!"
+            // })
+            return;
+        })
+
+        // let parameters = {
+        //     merchant: ZIBAL_MERCHANT_KEY,
+        //     callbackUrl: ZIBAL_CALLBACK_URL,
+        //     amount: AllPrices,//required
+        //     orderId: d.toLocaleString("fa-IR", { timeZone: "Iran", dateStyle: "full", timeStyle: "medium" }),//optional
+        //     description: ItemsTitle,
+        //     // "mobile": $phone_number,//optional for mpg
+        //     // multiplexingInfos: multiplexingInfos
+        // }
+        // const data = JSON.stringify(parameters);
+        // // let obj = {name: 'kian', age: 23}
+        // // const arg1 = JSON.stringify("request")
 
 
 
-        if (is_user_logged_in()) {
-            console.log("data", data)
-            let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=postToZibal&arg1=request&arg2=${data}`)
+        // if (is_user_logged_in()) {
+        //     console.log("data", data)
+        //     let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=postToZibal&arg1=request&arg2=${data}`)
 
-            res.then(function (value) {
-                console.log("value", value)
-                console.log("trackId", value['trackId'])
-                const trackId = value['trackId'];
-                window.location.href = `https://gateway.zibal.ir/start/${trackId}`;
-            });
+        //     res.then(function (value) {
+        //         console.log("value", value)
+        //         console.log("trackId", value['trackId'])
+        //         const trackId = value['trackId'];
+        //         window.location.href = `https://gateway.zibal.ir/start/${trackId}`;
+        //     });
 
-        } else {
-            window.location.replace('https://kikiq.ir/login')
-        }
+        // } else {
+        //     window.location.replace('https://kikiq.ir/login')
+        // }
+
+
     }
 
 
@@ -219,21 +265,21 @@ const CartSelection = () => {
             {
                 isUserLoggedIn ? (
                     // <div className="getAddress--holder">
-                        <div id="getAddressId" className="getAddress">
-                            <div id="closeBtn"><button>X</button></div>
-                            <div className="getAddress--inputDiv">
-                                <input type="text" placeholder='City' />
-                            </div>
-                            <div className="getAddress--inputDiv">
-                                <input type="text" placeholder='Postal Code' />
-                            </div>
-                            <div className="getAddress--inputDiv" style={{ flexGrow: '3' }}>
-                                <textarea placeholder='Address'></textarea>
-                            </div>
-                            <div className="getAddress--inputDiv" style={{ marginRight: '54px' }}>
-                                <ButtonComponent cl="getAddress--button" handleClick={() => { process_inputs() }}>Continue</ButtonComponent>
-                            </div>
+                    <div id="getAddressId" className="getAddress">
+                        <div id="closeBtn"><button>X</button></div>
+                        <div className="getAddress--inputDiv">
+                            <input type="text" placeholder='City' onChange={handleCity} />
                         </div>
+                        <div className="getAddress--inputDiv">
+                            <input type="text" placeholder='Postal Code' onChange={handlePostalCode} />
+                        </div>
+                        <div className="getAddress--inputDiv"  style={{ flexGrow: '3' }}>
+                            <textarea placeholder='Address' onChange={handleAddress}></textarea>
+                        </div>
+                        <div className="getAddress--inputDiv" style={{ marginRight: '54px' }}>
+                            <ButtonComponent cl="getAddress--button" handleClick={() => { process_inputs() }}>Continue</ButtonComponent>
+                        </div>
+                    </div>
                     // </div>
                 ) : (<></>)
             }
