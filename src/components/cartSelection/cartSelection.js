@@ -14,11 +14,12 @@ import { RestFulApi } from '../../apis/api';
 const CartSelection = () => {
     // const selections = useParams()
     const { carts, dispatchCart } = useContext(CartContext)
-    const { currentUserId, currentUserData, is_user_logged_in } = useContext(AuthContext)
+    const { currentUserId, currentUserData, setCurrentUserData, is_user_logged_in } = useContext(AuthContext)
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
     const [newSelection, setNewSelection] = useState([])
     const [cartLength, setCartLength] = useState()
     const [refresh, setRefresh] = useState(0)
+    const [submitted, setSubmitted] = useState(false)
     const [city, setCity] = useState("")
     const [postalCode, setPostalCode] = useState("")
     const [address, setAddress] = useState("")
@@ -100,10 +101,10 @@ const CartSelection = () => {
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
-    const ZIBAL_CALLBACK_URL = "http://localhost:1302/callbackurl"
-    const ADDRESS = address
-    const CITY = city
-    const POSTAL_CODE = postalCode
+    const ZIBAL_CALLBACK_URL = "http://localhost:1238/callbackurl"
+    let ADDRESS = address
+    let CITY = city
+    let POSTAL_CODE = postalCode
     // let multiplexingInfos = {bankAccount: "IR000000000000000000000000",amount: 50000}
     // multiplexingInfos = JSON.stringify(multiplexingInfos)
     const d = new Date();
@@ -127,19 +128,25 @@ const CartSelection = () => {
 
     const process_inputs = () => {
 
-        console.log("currentUser", currentUserData)
-
+        // console.log("currentUser", currentUserData)
+        
         let user = {
             username: currentUserData['username'],
+            // first_name: currentUserData['first_name'],
+            // last_name: currentUserData['last_name'],
+            // phone_number: currentUserData['phone_number'],
+            // password: currentUserData['password'],
+            // id: currentUserData['id'],
             address: ADDRESS,
             city: CITY,
             postal_code: POSTAL_CODE
         }
-
-
-        const jsonUser = JSON.stringify(user)
+        
+        // setCurrentUserData(user)
+        // let username = currentUserData['username']
+        const jsonUser = JSON.stringify(user);
         console.log("user", user)
-        let addUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=add_user&arg1=${jsonUser}`)
+        let addUser = RestFulApi(`https://apis.kikiq.ir/api.php?fn=update_user&arg1=${jsonUser}`)
         addUser.then(function (response) {
             console.log(response)
         })
@@ -182,7 +189,7 @@ const CartSelection = () => {
         //     window.location.replace('https://kikiq.ir/login')
         // }
 
-
+        setSubmitted(true)
     }
 
 
@@ -274,7 +281,7 @@ const CartSelection = () => {
                         <div className="getAddress--inputDiv">
                             <input type="text" placeholder='Postal Code' onChange={handlePostalCode} />
                         </div>
-                        <div className="getAddress--inputDiv"  style={{ flexGrow: '3' }}>
+                        <div className="getAddress--inputDiv" style={{ flexGrow: '3' }}>
                             <textarea placeholder='Address' onChange={handleAddress}></textarea>
                         </div>
                         <div className="getAddress--inputDiv" style={{ marginRight: '54px' }}>
