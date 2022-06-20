@@ -10,6 +10,7 @@ import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import AuthContextProvider, { AuthContext } from '../../contexts/authContext';
 import $ from 'jquery';
 import { RestFulApi } from '../../apis/api';
+import Message from '../../utils/message/message';
 
 const CartSelection = () => {
     // const selections = useParams()
@@ -23,6 +24,7 @@ const CartSelection = () => {
     const [city, setCity] = useState("")
     const [postalCode, setPostalCode] = useState("")
     const [address, setAddress] = useState("")
+    const [message, setMessage] = useState("")
 
     useEffect(() => {
         setIsUserLoggedIn(is_user_logged_in())
@@ -34,7 +36,28 @@ const CartSelection = () => {
     // }, [])
 
 
-    const handleItems = () => {
+    // const handleItems = () => {
+    // $('.Button').on('click', function () {
+    //     $('.showAll').hide()
+    //     $('.cartselection--items li').slideDown(400)
+    // })
+
+    // $('.btnComplete').on('click', function () {
+    //     $('.getAddress').show(500).css('display', 'flex')
+    // })
+
+    // $('#closeBtn').on('click', function () {
+    //     $('.getAddress').hide(300)
+    // })
+
+    // setRefresh(refresh + 1)
+    // }
+
+    // useEffect(() => {
+    //     handleItems()
+    // }, [refresh])
+
+    useEffect(() => {
         $('.Button').on('click', function () {
             $('.showAll').hide()
             $('.cartselection--items li').slideDown(400)
@@ -47,15 +70,7 @@ const CartSelection = () => {
         $('#closeBtn').on('click', function () {
             $('.getAddress').hide(300)
         })
-
-        setRefresh(refresh + 1)
-    }
-
-    useEffect(() => {
-        handleItems()
-    }, [refresh])
-
-
+    })
 
 
 
@@ -101,7 +116,7 @@ const CartSelection = () => {
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
-    const ZIBAL_CALLBACK_URL = "https://www.kikiq.ir/callbackurl"
+    const ZIBAL_CALLBACK_URL = "http://localhost:4199/callbackurl"
     let ADDRESS = address
     let CITY = city
     let POSTAL_CODE = postalCode
@@ -129,9 +144,12 @@ const CartSelection = () => {
 
 
     const handleBtnComplete = () => {
-        if(!isUserLoggedIn){
-            window.location.href = "https://www.kikiq.ir/login"
-        }else {
+        if (!isUserLoggedIn) {
+            setMessage("Please login to your account first")
+            setTimeout(() => {
+                window.location.href = "https://www.kikiq.ir/login"
+            }, 1100)
+        } else {
             return;
         }
     }
@@ -152,7 +170,7 @@ const CartSelection = () => {
             city: CITY,
             postal_code: POSTAL_CODE
         }
-        
+
         // setCurrentUserData(user)
         // let username = currentUserData['username']
         const jsonUser = JSON.stringify(user);
@@ -223,6 +241,7 @@ const CartSelection = () => {
             justifyContent: 'center',
             alignItems: 'center'
         }}>
+            {message ? (<Message clas="info">{message}</Message>) : (<></>)}
             <div className="cartselection">
                 {newSelection.map((item) => (
                     <div className="showAll">

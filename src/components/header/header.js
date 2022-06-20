@@ -154,20 +154,21 @@ const Header = () => {
 
 
     const neww = []
+    let storedData = []
     useEffect(() => {
 
         if (carts.length >= 1) {
             neww.push.apply(neww, carts)
             localStorage.setItem('carts', JSON.stringify(neww))
-            setRefresh(refresh + 1)
+            // setRefresh(refresh + 1)
 
         } else {
-            let storedData = localStorage.getItem('carts')
+            storedData = localStorage.getItem('carts')
             if (storedData) {
                 storedData = JSON.parse(storedData)
 
                 if (carts.length < 1) {
-                    setRefresh(refresh + 1)
+                    // setRefresh(refresh + 1)
 
                     // if(carts.length == 1) {
                     //     neww.push.apply(neww, carts)
@@ -192,7 +193,7 @@ const Header = () => {
                 }
             }
         }
-    }, [carts, added, refresh])
+    }, [storedData])
 
     return (
         <div className="header" id="header" style={background} ref={headerref}>
