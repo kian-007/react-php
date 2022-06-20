@@ -126,10 +126,21 @@ const CartSelection = () => {
         setAddress(e.target.value)
     }
 
-    const process_inputs = () => {
 
+
+    const handleBtnComplete = () => {
+        if(!isUserLoggedIn){
+            window.location.href = "https://www.kikiq.ir/login"
+        }else {
+            return;
+        }
+    }
+
+
+
+    const process_inputs = () => {
         // console.log("currentUser", currentUserData)
-        
+
         let user = {
             username: currentUserData['username'],
             // first_name: currentUserData['first_name'],
@@ -186,7 +197,7 @@ const CartSelection = () => {
             });
 
         } else {
-            window.location.replace('https://kikiq.ir/login')
+            window.location.replace('https://www.kikiq.ir/login')
         }
 
         setSubmitted(true)
@@ -261,7 +272,7 @@ const CartSelection = () => {
                         ))}
                         <tr style={{ width: '100%' }}>
                             <td style={{ float: 'right' }}>
-                                <button className="btnComplete" >Complete</button>
+                                <button className="btnComplete" onClick={handleBtnComplete} >Complete</button>
                             </td>
                         </tr>
                     </table>
