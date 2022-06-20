@@ -101,7 +101,7 @@ const CartSelection = () => {
 
 
     const ZIBAL_MERCHANT_KEY = "zibal"
-    const ZIBAL_CALLBACK_URL = "http://localhost:1238/callbackurl"
+    const ZIBAL_CALLBACK_URL = "https://www.kikiq.ir/callbackurl"
     let ADDRESS = address
     let CITY = city
     let POSTAL_CODE = postalCode
@@ -159,35 +159,35 @@ const CartSelection = () => {
             // return;
         })
 
-        // let parameters = {
-        //     merchant: ZIBAL_MERCHANT_KEY,
-        //     callbackUrl: ZIBAL_CALLBACK_URL,
-        //     amount: AllPrices,//required
-        //     orderId: d.toLocaleString("fa-IR", { timeZone: "Iran", dateStyle: "full", timeStyle: "medium" }),//optional
-        //     description: ItemsTitle,
-        //     // "mobile": $phone_number,//optional for mpg
-        //     // multiplexingInfos: multiplexingInfos
-        // }
-        // const data = JSON.stringify(parameters);
-        // // let obj = {name: 'kian', age: 23}
-        // // const arg1 = JSON.stringify("request")
+        let parameters = {
+            merchant: ZIBAL_MERCHANT_KEY,
+            callbackUrl: ZIBAL_CALLBACK_URL,
+            amount: AllPrices,//required
+            orderId: d.toLocaleString("fa-IR", { timeZone: "Iran", dateStyle: "full", timeStyle: "medium" }),//optional
+            description: ItemsTitle,
+            // "mobile": $phone_number,//optional for mpg
+            // multiplexingInfos: multiplexingInfos
+        }
+        const data = JSON.stringify(parameters);
+        // let obj = {name: 'kian', age: 23}
+        // const arg1 = JSON.stringify("request")
 
 
 
-        // if (is_user_logged_in()) {
-        //     console.log("data", data)
-        //     let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=postToZibal&arg1=request&arg2=${data}`)
+        if (is_user_logged_in()) {
+            console.log("data", data)
+            let res = RestFulApi(`https://apis.kikiq.ir/api.php?fn=postToZibal&arg1=request&arg2=${data}`)
 
-        //     res.then(function (value) {
-        //         console.log("value", value)
-        //         console.log("trackId", value['trackId'])
-        //         const trackId = value['trackId'];
-        //         window.location.href = `https://gateway.zibal.ir/start/${trackId}`;
-        //     });
+            res.then(function (value) {
+                console.log("value", value)
+                console.log("trackId", value['trackId'])
+                const trackId = value['trackId'];
+                window.location.href = `https://gateway.zibal.ir/start/${trackId}`;
+            });
 
-        // } else {
-        //     window.location.replace('https://kikiq.ir/login')
-        // }
+        } else {
+            window.location.replace('https://kikiq.ir/login')
+        }
 
         setSubmitted(true)
     }
