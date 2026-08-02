@@ -66,7 +66,7 @@ const Header = () => {
         case '':
             title = 'KikiCutest \\ Home'
             background = {
-                backgroundImage: "url(/model.jpg)",
+                backgroundImage: `url({process.env.PUBLIC_URL}/model.jpg)`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundColor: "#bcb3ad",
@@ -76,7 +76,7 @@ const Header = () => {
         case '/':
             title = 'KikiCutest \\ Home'
             background = {
-                backgroundImage: "url(/model.jpg)",
+                backgroundImage: `url({process.env.PUBLIC_URL}/model.jpg)`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundColor: "#bcb3ad",
@@ -86,7 +86,7 @@ const Header = () => {
         case '/home':
             title = 'KikiCutest \\ Home'
             background = {
-                backgroundImage: "url(/model.jpg)",
+                backgroundImage: `url({process.env.PUBLIC_URL}/model.jpg)`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundColor: "#bcb3ad",
@@ -96,7 +96,7 @@ const Header = () => {
         case '/blog':
             title = 'Blog'
             background = {
-                backgroundImage: "url(/super.jpg)",
+                backgroundImage: `url({process.env.PUBLIC_URL}/super.jpg)`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundColor: "#2b2a26"
@@ -105,7 +105,7 @@ const Header = () => {
         case '/about':
             title = 'About'
             background = {
-                backgroundImage: "url(/beautifulwo3.jpeg)",
+                backgroundImage: `url({process.env.PUBLIC_URL}/beautifulwo3.jpeg)`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundColor: "#2b2a26"
