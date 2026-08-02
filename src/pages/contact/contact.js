@@ -14,9 +14,9 @@ const Contact = () => {
     const inputSubjectRef = useRef(null)
     const inputSubmitRef = useRef(null)
     const { checkAuthentication, currentUserId } = useContext(AuthContext)
-    useEffect(() => {
+    /* useEffect(() => {
         checkAuthentication(true)
-    }, [currentUserId])
+    }, [currentUserId]) */
 
     const handleChangeInputSubject = (event) => {
         if (ValidateSubject(event.target.value)) {
@@ -53,11 +53,17 @@ const Contact = () => {
     const handleChangeTextArea = (event) => {
         setDescription(event.target.value);
     }
+
     const handleSubmit = () => {
-        console.log("subject", subject)
-        console.log("email", email)
-        console.log("description", description)
-        inputSubmitRef.current.classList.add('activeButtonContact')
+    if (!currentUserId) {
+        alert("Please login to send a message");
+        navigate('/login');
+        return;
+    }
+    console.log("subject", subject)
+    console.log("email", email)
+    console.log("description", description)
+    inputSubmitRef.current.classList.add('activeButtonContact')
     }
 
     useEffect(() => {
