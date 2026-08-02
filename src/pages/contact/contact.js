@@ -3,10 +3,12 @@ import Button from '../../components/buttons/button';
 import { AuthContext } from '../../contexts/authContext';
 import { ValidateEmail, ValidateSubject } from '../../utils/validation';
 import './contact.css';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Contact = () => {
+    const navigate = useNavigate();
     const [subject, setSubject] = useState('')
     const [email, setEmail] = useState('')
     const [description, setDescription] = useState('')
