@@ -52,7 +52,6 @@ const AuthContextProvider = (props) => {
         if (is_authentication_required(authentication_required) && !is_user_logged_in()) {
             //window.location.replace('https://kikiq.ir/')
             window.location.replace(`${process.env.PUBLIC_URL}/`)
-            navigate
         }
     }
 
