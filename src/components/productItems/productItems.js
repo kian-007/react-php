@@ -60,7 +60,7 @@ const ProductItems = ({ item }) => {
             <Link to={`/product/${item.id}`}>
                 <Image imageSrc={`${PROJECT_URL}/images/${item.category}/${item.image}`} />
             </Link>
-            <span>{item.price}</span>
+            <span>{item.price} Toman</span>
             <ButtonComponent handleClick={handleAdd} style={{ color: themeValues.theme.color }}
                 cl={added ? "added" : ""}>
                 {added ? (
