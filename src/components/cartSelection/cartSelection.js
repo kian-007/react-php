@@ -3,6 +3,7 @@ import { CartContext } from '../../contexts/cartContext';
 import PRODUCTS from '../../pages/ITEMS.json'
 import './cartSelection.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { PROJECT_URL } from '../../config/general';
 import { Image } from '../';
 import { ButtonComponent } from '../../components'
@@ -25,6 +26,7 @@ const CartSelection = () => {
     const [postalCode, setPostalCode] = useState("")
     const [address, setAddress] = useState("")
     const [message, setMessage] = useState("")
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsUserLoggedIn(is_user_logged_in())
@@ -147,7 +149,8 @@ const CartSelection = () => {
         if (!isUserLoggedIn) {
             setMessage("Please login to your account first")
             setTimeout(() => {
-                window.location.href = "https://www.kikiq.ir/login"
+                //window.location.href = "https://www.kikiq.ir/login"
+                navigate("/login");
             }, 1100)
         } else {
             return;
