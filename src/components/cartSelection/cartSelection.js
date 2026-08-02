@@ -218,7 +218,8 @@ const CartSelection = () => {
             });
 
         } else {
-            window.location.replace('https://www.kikiq.ir/login')
+            //window.location.replace('https://www.kikiq.ir/login')
+            navigate("/login");
         }
 
         setSubmitted(true)
