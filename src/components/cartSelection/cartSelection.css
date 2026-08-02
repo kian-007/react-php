@@ -48,7 +48,7 @@
 
 @media only screen and (max-width: 630px) {
     .cartselection--items li {
-        width: 30%;
+        width: 70%;
     }
     .cartselection--items li a {
         width: 100%;
