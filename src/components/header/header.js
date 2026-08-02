@@ -114,7 +114,7 @@ const Header = () => {
         case '/contact':
             title = 'Contact'
             background = {
-                backgroundImage: "url(/beautifulwo3.jpeg)",
+                backgroundImage: `url(${process.env.PUBLIC_URL}/beautifulwo3.jpeg)`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundColor: "#2b2a26"
@@ -123,7 +123,7 @@ const Header = () => {
         default:
             title = 'Home'
             background = {
-                backgroundImage: "url(/model.jpg)",
+                backgroundImage: `url(${process.env.PUBLIC_URL}/model.jpg)`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundColor: "#2b2a26",
@@ -136,7 +136,7 @@ const Header = () => {
             if (pathname == `/shop/${category.title}/${section}`) {
                 title = `Shop / ${section}`;
                 background = {
-                    backgroundImage: "url(/super.jpg)",
+                    backgroundImage: `url(${process.env.PUBLIC_URL}/super.jpg)`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundColor: "#2b2a26",
