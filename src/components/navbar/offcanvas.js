@@ -91,7 +91,8 @@ const Offcanvas = ({ carts }) => {
             <div className="offcanvasButtonDiv" id="obd">
                 {/* <!-- Use any element to open the sidenav --> */}
                 <button id="menuButton"  >
-                    <img src="../../offcanvas.png" alt="offcanvas" />
+                    //<img src="../../offcanvas.png" alt="offcanvas" />
+                    <img src={`${process.env.PUBLIC_URL}/offcanvas.png`} alt="offcanvas" />
                 </button>
 
                 <div className="cart">
