@@ -1,7 +1,6 @@
 {
     "name": "my-app",
     "version": "0.1.0",
-    #"homepage": "https://kikiq.ir/",
     "homepage": "https://kian-007.github.io/react-php",
     "private": true,
     "dependencies": {
