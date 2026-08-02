@@ -7,7 +7,8 @@ import $ from 'jquery';
 import CartSelection from '../components/cartSelection/cartSelection';
 import { Home, About, Contact, Blog, SingleProduct, Layout, ShowSection, LogIn, CallBackUrl } from '../components';
 import {
-  BrowserRouter as Router,
+//BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
 } from 'react-router-dom';
